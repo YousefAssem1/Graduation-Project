@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+              rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+              crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/mawad-page/style.css">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+	<title>Display content</title>
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-lg bg-dark navbar-dark py-1 fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="/after_login">
+                    <p class="masfofa">Masfofa<span>!</span></p>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navmenu"><span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navmenu">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link d-flex align-items-center profile-link" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="<%= userData.profileimage %>" alt="Profile" class="rounded-circle" width="40" height="40">
+                                <p class="mb-0 ms-2 profile-name"><%= userData.fname %></p>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a href="/profile-page">Profile</a>
+                                <a href="#">Settings</a>
+                                <a href="/logout">Log out</a>
+                            </div>
+                        </li>  
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="/after_login" class="nav-link">Home</a>
+                        </li>  
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="/student-page" class="nav-link">Student Page</a>
+                        </li>  
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="/video-page" class="nav-link">Subject</a>
+                        </li>  
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="/summary-page" class="nav-link">Subject Summary</a>
+                        </li>  
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+
+
+
+	 <section class="bg-dark text-light p-5 p-lg-0 p-md-0 pt-lg-5 pt-md-5 mt-3 text-center text-sm-start" style="height: 200px;">
+            <div class="container">
+                <div class="d-sm-flex align-items-center justify-content-between">
+                    <div>
+                        <h2 class="mb-4">About the <span style="color: #523DB9;">Subject!</span></h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <section class="midell d-flex justify-content-top align-items-center flex-column" style="height: 800px;">
+
+        	<fieldset style="border-color: #f5f5dc;" class="d-flex  align-items-center flex-column media">
+        <div class="content">
+            <h1 Align="center"><%= userData?.sub || 'Subject Not Found' %></h1>
+              <br /> 
+        </div>
+
+            <div class="text-box">
+                <h3 Align="center"><%= userData?.brief || 'No description available' %></h3>
+            </div>
+           
+              </div>
+                <div class="text-box">
+                    <h4>To obtain the material for this Subject</h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <h5>Click<a href="<%= userData.path_ %>" download> here </a>!</h5>   
+                </div>
+
+                <br />
+    </fieldset>
+        </section>
+
+
+        <section   class="bg-dark d-flex  justify-content-center align-items-center flex-column size">
+        <div class="pp">
+            <h4 style="color: white; margin-bottom: 10px; padding: 0 0 0 5px;"> Made by</h4>
+            <br />
+           <a href="/after_login" style=" text-decoration: none;">Masfofa Team</a>
+          </div>	
+        </section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
+                crossorigin="anonymous"></script>
+
+</body>
+</html>

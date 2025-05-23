@@ -1,0 +1,299 @@
+/* Base Styles */
+
+
+html, body {
+    font-weight: 400 !important;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.primary-color {
+    color: #4e51fd;
+}
+
+.btn-sz-primary {
+    width: 100%;
+    color: white !important;
+    background-color: #4e51fd;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-sz-primary:hover {
+    background-color: #6581d0;
+}
+
+.main-text {
+    font-size: 25px;
+    line-height: 1.4;
+    letter-spacing: 3px;
+}
+
+.main-input {
+    width: 80%;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0px !important;
+    border-bottom: 2px solid #4e51fd !important;
+    padding: 10px 5px;
+}
+
+.back-to-login {
+    color: #333;
+    text-decoration: none;
+    display: inline-block;
+    padding-top: 15px;
+}
+
+
+/* Modal Styles */
+.overlay {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 380px;
+    width: 100%;
+    padding: 30px 20px;
+    border-radius: 24px;
+    background-color: #fff;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    transform: translate(-50%, -50%) scale(1.2);
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    z-index: 1001;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+body.active .overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+body.active .modal-box {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.modal-box i {
+    font-size: 70px;
+    margin-bottom: 15px;
+}
+
+#statusIcon {
+    color: #4e51fd;
+}
+
+.error-icon {
+    color: #ff3333 !important;
+}
+
+.success-icon {
+    color: #4CAF50;
+}
+
+.modal-box h2 {
+    margin-top: 10px;
+    font-size: 25px;
+    font-weight: 500;
+    color: #333;
+}
+
+.modal-box h3 {
+    font-size: 16px;
+    font-weight: 400;
+    color: #333;
+    text-align: center;
+    margin: 10px 0 20px;
+}
+
+.modal-box .buttons {
+    margin-top: 15px;
+}
+
+.modal-box button {
+    font-size: 14px;
+    padding: 8px 20px;
+    margin: 0 10px;
+    background-color: #4e51fd;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.modal-box button:hover {
+    background-color: #3c3ff8;
+}
+
+.verify-btn {
+    min-width: 100px;
+}
+
+/* Password input styles */
+.password {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.password input {
+    width: 30px;
+    height: 40px;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    border-bottom: solid 2px #4e51fd;
+    font-size: 20px;
+    color: #333;
+    outline: none;
+}
+
+.password input:focus {
+    border-bottom: solid 2px #3c3ff8;
+}
+
+/* Error message styles */
+.error-message {
+    color: #ff3333;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+    display: none;
+}
+
+.password.error input {
+    border-bottom: solid 2px #ff3333 !important;
+}
+
+/* Success state styles */
+#successContent {
+    display: none;
+    text-align: center;
+}
+
+/* Email error styles */
+.text-danger {
+    color: #ff3333;
+    font-size: 14px;
+    margin-left: 5px;
+}
+
+/* Shake animations */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
+}
+
+@keyframes shakeEmail {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
+}
+
+.shake-email {
+    animation: shakeEmail 0.5s;
+}
+
+/* Wave input animation */
+.wave-group {
+    position: relative;
+}
+
+.wave-group .input {
+    display: block;
+    width: 500px;
+    font-size: 16px;
+    padding: 10px 10px 10px 5px;
+    border: none;
+    color: #000;
+    border-bottom: 1px solid #000;
+    background-color: transparent;
+}
+
+.wave-group .input:focus {
+    outline: none;
+}
+
+.wave-group .label {
+    position: absolute;
+    left: 5px;
+    top: 10px;
+    font-size: 18px;
+    font-weight: normal;
+    pointer-events: none;
+    display: flex;
+    color: #666;
+}
+
+.wave-group .label-char {
+    transition: 0.2s ease all;
+    transition-delay: calc(var(--index) * .05s);
+}
+
+.wave-group .input:focus~label .label-char,
+.wave-group .input:valid~label .label-char {
+    font-size: 14px;
+    color: #000;
+    transform: translateY(-20px);
+}
+
+.wave-group .bar {
+    position: relative;
+    display: block;
+    width: 500px;
+}
+
+.wave-group .bar:before,
+.wave-group .bar:after {
+    content: '';
+    position: absolute;
+    bottom: 1px;
+    width: 0;
+    height: 2px;
+    background: #000;
+    transition: 0.2s ease all;
+}
+
+.wave-group .bar:before {
+    left: 50%;
+}
+
+.wave-group .bar:after {
+    right: 50%;
+}
+
+.wave-group .input:focus~.bar:before,
+.wave-group .input:focus~.bar:after {
+    width: 50%;
+}
+
+
+
+
+
+
+.verify-btn:disabled {
+    background-color: #cccccc !important;
+    cursor: not-allowed !important;
+}

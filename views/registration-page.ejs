@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Combined Login and Verification</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/styles/registration-page/style.css">
+
+</head>
+<body>
+    <!-- Login Form -->
+    <div class="header">
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+            <defs>
+                <path id="gentle-wave"
+                    d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="parallax">
+                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7)" />
+                <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+                <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+                <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+            </g>
+        </svg>
+    </div>
+
+    <div class="login-container">
+        <div class="login-form-items">
+            <span class="login-label">Create an Account</span>
+
+            <!-- Input fields -->
+          <form action="/registration" method="POST">
+            <div class="input-row">
+                <div class="wave-group">
+                    <input required type="text" class="input" id="firstName" autocomplete="off" name="first_name">
+                    <span class="bar"></span>
+                    <label class="label">
+                        <span class="label-char" style="--index: 0">F</span>
+                        <span class="label-char" style="--index: 1">i</span>
+                        <span class="label-char" style="--index: 2">r</span>
+                        <span class="label-char" style="--index: 3">s</span>
+                        <span class="label-char" style="--index: 4">t</span>
+                        <span class="label-char" style="--index: 5">&nbsp;</span>
+                        <span class="label-char" style="--index: 6">N</span>
+                        <span class="label-char" style="--index: 7">a</span>
+                        <span class="label-char" style="--index: 8">m</span>
+                        <span class="label-char" style="--index: 9">e</span>
+                    </label>
+                </div>
+                <div class="wave-group">
+                    <input required type="text" class="input" id="lastName" autocomplete="off" name ="last_name">
+                    <span class="bar"></span>
+                    <label class="label">
+                        <span class="label-char" style="--index: 0">L</span>
+                        <span class="label-char" style="--index: 1">a</span>
+                        <span class="label-char" style="--index: 2">s</span>
+                        <span class="label-char" style="--index: 3">t</span>
+                        <span class="label-char" style="--index: 4">&nbsp;</span>
+                        <span class="label-char" style="--index: 5">N</span>
+                        <span class="label-char" style="--index: 6">a</span>
+                        <span class="label-char" style="--index: 7">m</span>
+                        <span class="label-char" style="--index: 8">e</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Email input -->
+           <div class="wave-group">
+                <input required type="email" class="input" id="email" autocomplete="off" name="email">
+                <span class="bar"></span>
+                <label class="label">
+                    <span class="label-char" style="--index: 0">E</span>
+                    <span class="label-char" style="--index: 1">m</span>
+                    <span class="label-char" style="--index: 2">a</span>
+                    <span class="label-char" style="--index: 3">i</span>
+                    <span class="label-char" style="--index: 4">l</span>
+                    <span class="label-char" style="--index: 5">&nbsp;</span>
+                    <span class="label-char" style="--index: 6">A</span>
+                    <span class="label-char" style="--index: 7">d</span>
+                    <span class="label-char" style="--index: 8">d</span>
+                    <span class="label-char" style="--index: 9">r</span>
+                    <span class="label-char" style="--index: 10">e</span>
+                    <span class="label-char" style="--index: 11">s</span>
+                    <span class="label-char" style="--index: 12">s</span>
+                </label>
+                <div class="error-message-container">
+                    <div id="emailError" class="text-danger" style="display: none;">
+                        Please enter a valid email address
+                    </div>
+                </div>
+            </div>
+
+            <!-- Password fields -->
+            <div class="input-row">
+                <div class="wave-group">
+                    <div class="password-field">
+                        <input type="password" class="input" id="password" required autocomplete="new-password" name = "password">
+                        <span class="bar"></span>
+                        <label class="label">
+                            <span class="label-char" style="--index: 0">P</span>
+                            <span class="label-char" style="--index: 1">a</span>
+                            <span class="label-char" style="--index: 2">s</span>
+                            <span class="label-char" style="--index: 3">s</span>
+                            <span class="label-char" style="--index: 4">w</span>
+                            <span class="label-char" style="--index: 5">o</span>
+                            <span class="label-char" style="--index: 6">r</span>
+                            <span class="label-char" style="--index: 7">d</span>
+                        </label>
+                        <button class="password-toggle">
+                            <svg viewBox="0 0 21 21">
+                                <circle class="eye" cx="10.5" cy="10.5" r="2.25" />
+                                <path class="top" d="M2 10.5C2 10.5 6.43686 5.5 10.5 5.5C14.5631 5.5 19 10.5 19 10.5" />
+                                <path class="bottom" d="M2 10.5C2 10.5 6.43686 15.5 10.5 15.5C14.5631 15.5 19 10.5 19 10.5" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="wave-group">
+                    <div class="password-field">
+                        <input type="password" class="input" id="confirmPassword" required autocomplete="new-password" >
+                        <span class="bar"></span>
+                        <label class="label">
+                            <span class="label-char" style="--index: 0">C</span>
+                            <span class="label-char" style="--index: 1">o</span>
+                            <span class="label-char" style="--index: 2">n</span>
+                            <span class="label-char" style="--index: 3">f</span>
+                            <span class="label-char" style="--index: 4">i</span>
+                            <span class="label-char" style="--index: 5">r</span>
+                            <span class="label-char" style="--index: 6">m</span>
+                            <span class="label-char" style="--index: 7">&nbsp;</span>
+                            <span class="label-char" style="--index: 8">P</span>
+                            <span class="label-char" style="--index: 9">a</span>
+                            <span class="label-char" style="--index: 10">s</span>
+                            <span class="label-char" style="--index: 11">s</span>
+                            <span class="label-char" style="--index: 12">w</span>
+                            <span class="label-char" style="--index: 13">o</span>
+                            <span class="label-char" style="--index: 14">r</span>
+                            <span class="label-char" style="--index: 15">d</span>
+                        </label>
+                        <button class="password-toggle">
+                            <svg viewBox="0 0 21 21">
+                                <circle class="eye" cx="10.5" cy="10.5" r="2.25" />
+                                <path class="top" d="M2 10.5C2 10.5 6.43686 5.5 10.5 5.5C14.5631 5.5 19 10.5 19 10.5" />
+                                <path class="bottom" d="M2 10.5C2 10.5 6.43686 15.5 10.5 15.5C14.5631 15.5 19 10.5 19 10.5" />
+                            </svg>
+                        </button>
+                        <div class="error-message-container">
+                            <div id="passwordError" class="text-danger" style="display: none;">
+                                Passwords do not match!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Select elements -->
+            <div class="select-row">
+                <div class="wave-group">
+                    <select class="custom" name="role" id="role-select" required style="width: 420px;">
+                        <option value="" disabled selected>Select your role...</option>
+                        <option value="student">Student</option>
+                        <option value="professor">University Professor</option>
+                    </select>
+                </div>
+                <div class="wave-group" id="another-select-container">
+                    <select class="custom"  name="major" id="another-select" required style="width: 420px;">
+                        <option value="" disabled selected>University major</option>
+                        <option value="Computer Science">Computer Science</option>
+                        <option value="Computer Information Systems">Computer Information Systems</option>
+                        <option value="Software Engineering">Software Engineering</option>
+                        <option value="Data Science and Artificial Intelligence">Data Science and Artificial Intelligence</option>
+                    </select>
+                </div>
+            </div>
+            <!-- Modify the professor fields container -->
+<div class="select-row" id="professor-fields-container" style="display: none;">
+    <div class="wave-group">
+        <select class="custom" name="degree" id="degree-select" required style="width: 420px;">
+            <option value="" disabled selected>Select your degree...</option>
+            <option value="PhD">PhD</option>
+            <option value="Master's">Master's</option>
+        </select>
+    </div>
+     <div class="wave-group">
+    <select class="custom" name="university" id="university-select" required style="width: 420px;">
+        <option value="" disabled selected>Loading universities...</option>
+    </select>
+</div>
+<div class="wave-group" id="college-container">
+    <select class="custom" name="college" id="college-select" required style="width: 420px;">
+        <!-- Options will be populated dynamically -->
+    </select>
+</div>
+</div>
+            <!-- Sign-up button and footer -->
+            <button class="login-btn" id="showModalBtn" type = "submit">Sign Up</button>
+            <span class="footer" align="center" >Already have an account?<a href="/login">Login</a> </span>
+        </form>
+        </div>
+    </div>
+
+    <!-- Verification Modal -->
+    <span class="overlay" id="overlay"></span>
+    <div class="modal-box" id="modalBox">
+        <div id="verificationContent" align="center">
+            <i class="fa-regular fa-circle-check" id="statusIcon"></i>
+            <h2>Verification Code</h2>
+            <h3>Enter the 6-digit code sent to your email</h3>
+            
+            <div class="password" id="passwordContainer">
+                <input maxlength="1" class="input" type="text" data-index="0" >
+                <input maxlength="1" class="input" type="text" data-index="1" >
+                <input maxlength="1" class="input" type="text" data-index="2" >
+                <input maxlength="1" class="input" type="text" data-index="3" >
+                <input maxlength="1" class="input" type="text" data-index="4" >
+                <input maxlength="1" class="input" type="text" data-index="5" >
+            </div>
+            
+            <div class="error-message" id="errorMessage">
+                The verification code is incorrect. Please try again.
+            </div>
+            
+            <div class="buttons">
+                <button class="verify-btn" id="verifyBtn" disabled>Verify</button>
+            </div>
+        </div>
+        
+        <div id="successContent">
+            <i class="fa-solid fa-circle-check success-icon"></i>
+            <h2>Identity Verified</h2>
+        </div>
+    </div>
+
+    <script src="/js/registration-page/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://assets.codepen.io/16327/MorphSVGPlugin3.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<!---------------------------------- Boot starb Links ---------------------------------------------->
+
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+          rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+          crossorigin="anonymous">
+    
+<!------------------------------------------------------------------------------------------------->
+    
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/styles/admin-page/style.css">
+    
+    <title>Admin page</title>
+    <style>
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: -300px;
+    padding: 15px 25px;
+    border-radius: 5px;
+    color: white;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    max-width: 300px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.notification.show {
+    right: 20px;
+}
+
+/* Keep the rest the same */
+.notification.success {
+    background: #28a745;
+}
+
+.notification.error {
+    background: #dc3545;
+}
+
+.notification.info {
+    background: #17a2b8;
+}
+jj{
+
+    text-decoration: none; 
+    color: #000;
+}
+
+.jj:hover{
+    color: #2d6a4f;
+}
+    </style>
+</head>
+<body>
+    
+
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-1 fixed-top">
+        <div class="container">
+            <a class="navbar-brand">
+                <p class="masfofa">Masfofa<span>!</span></p>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navmenu"><span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link d-flex align-items-center profile-link" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="/images/admin-page/1.jpg" alt="Profile" class="rounded-circle" width="40" height="40">
+                            <p class="mb-0 ms-2 profile-name"><%= userData.fname %></p>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="/logout">Log out</a>
+                        </div>
+                    </li>  
+                </ul>
+                
+                
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                    </li>  
+                </ul>
+            </div>
+        </div>
+    </nav>
+<section style="height: 50px;"></section>
+
+
+    <main>
+        <aside>
+            <ul class="Links">
+                <li onclick="Navigate(0)" class="activeLink">
+                    <p>Home</p>
+                </li>
+                <li onclick="Navigate(1)">
+                    <p>Reports</p>
+                </li>
+                <li onclick="Navigate(2)">
+                    <p>Graduation projects</p>
+                </li>
+                <li onclick="Navigate(3)">
+                    <p>Add content</p>
+                </li>
+                <li onclick="Navigate(4)">
+                    <p>Add Subjects</p>
+                </li>
+                <li>
+                   <p> <a href="/admin-page2" class="jj" style="text-decoration: none; color :#000">Add Faculty Member</a> </p>
+               </li>
+            </ul>
+        </aside>
+
+
+        <div class="swiper mySwiper">
+            <div class="SlideContainer swiper-wrapper">
+
+<!---------------------------------------- Slaide 1 ------------------------------------------------>
+
+
+                <div class="swiper-slide home-slide">
+                    <div class="HomeContent">
+
+
+                        <h1> <span class="stylized-name"></span></h1>
+                        <h2> <span class="proffesions"></span></h2>
+                        <p class="heroline"></p>
+
+
+                        <div class="ready-container">
+                            <div class="ready-text"></div>  <!-- Text will animate here -->                            </div>
+
+                        <div class="buttonGroup"> 
+                           <a href="#" class="dicplay" onclick="Navigate(1); return false;"><button>Yes</button></a>
+                           <a href="/logout" class="dicplay"><button>No</button></a>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="SideImg">
+
+
+                        
+                    <!-- Change this in your HTML -->
+                        <div class="top-right-corner">
+                            <div class="hr-line hr1"></div>
+                            <div class="hr-line hr2"></div>
+                        </div>
+
+                        
+
+
+                        <img src="/images/admin-page/1.jpg" alt="" style="margin: -20px 0 0 0;">
+
+                        <div class="bottom-left-corner">
+                            <div class="hr-line hr1"></div>
+                            <div class="hr-line hr2"></div>
+                        </div>
+
+                        <h1 style="text-align: center; margin: 5px 0 -30px 0 ;" class="stylized-name"></h1>
+                    </div>
+
+                    
+                </div>
+
+
+<!---------------------------------------- Slaide 2 ------------------------------------------------>
+
+                <div class="swiper-slide">
+                    <div id="rr">
+                       <div class="backdrop"></div>
+                       <div class="grid" id="posts-grid">
+                       
+                        <!-- Posts will be dynamically inserted here from the database -->
+                            
+                        </div>
+                    </div>
+                </div>
+
+
+<!---------------------------------------- Slaide 3 ------------------------------------------------>
+
+<div class="swiper-slide">
+    <form id="projectForm" method="POST" action="/upload-project" enctype="multipart/form-data">
+            <div class="about-us" style="margin: 40px 0 0 0;">
+        <div class="upload-container">
+            <div class="card p-4 shadow-lg">
+                <h2 class="text-center mb-4">Upload Project</h2>
+                <div class="accordion" id="projectAccordion">
+                    <!-- General Info Section -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingGeneral">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGeneral">
+                                General Information
+                            </button>
+                        </h2>
+                        <div id="collapseGeneral" class="accordion-collapse collapse" data-bs-parent="#projectAccordion">
+                            <div class="accordion-body">
+                                <div class="form-group">
+                                    <label for="projectTitle">Project Title :</label>
+                                    <div class="wave-group">
+                                        <input required type="text" id="projectTitle" class="input" name="projectTitle">
+                                        <span class="bar"></span>
+                                        <label class="label">
+                                            <span class="label-char" style="--index: 0">E</span>
+                                            <span class="label-char" style="--index: 1">n</span>
+                                            <span class="label-char" style="--index: 2">t</span>
+                                            <span class="label-char" style="--index: 3">e</span>
+                                            <span class="label-char" style="--index: 4">r</span>
+                                            <span class="label-char" style="--index: 5">&nbsp;</span>
+                                            <span class="label-char" style="--index: 6">t</span>
+                                            <span class="label-char" style="--index: 7">i</span>
+                                            <span class="label-char" style="--index: 8">t</span>
+                                            <span class="label-char" style="--index: 9">l</span>
+                                            <span class="label-char" style="--index: 10">e</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group mt-4">
+                                    <label for="projectYear">Year :</label>
+                                    <div class="wave-group">
+                                        <select id="projectYear" class="input" required name="projectYear">
+                                            <option value="" disabled selected>&nbsp;</option>
+                                            <option value="2019">2019</option>
+                                            <option value="2020">2020</option>
+                                            <option value="2021">2021</option>
+                                            <option value="2022">2022</option>
+                                            <option value="2023">2023</option>
+                                            <option value="2024">2024</option>
+                                            <option value="2025">2025</option>
+                                        </select>
+                                        <span class="bar"></span>
+                                        <label class="label">
+                                            <span class="label-char" style="--index: 0">S</span>
+                                            <span class="label-char" style="--index: 1">e</span>
+                                            <span class="label-char" style="--index: 2">l</span>
+                                            <span class="label-char" style="--index: 3">e</span>
+                                            <span class="label-char" style="--index: 4">c</span>
+                                            <span class="label-char" style="--index: 5">t</span>
+                                            <span class="label-char" style="--index: 6">&nbsp;</span>
+                                            <span class="label-char" style="--index: 7">y</span>
+                                            <span class="label-char" style="--index: 8">e</span>
+                                            <span class="label-char" style="--index: 9">a</span>
+                                            <span class="label-char" style="--index: 10">r</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group mt-4">
+                                    <label for="projectYear">Semester :</label>
+                                    <div class="wave-group">
+                                        <select id="projectYear" class="input" required name="projectSemester">
+                                            <option value="" disabled selected>&nbsp;</option>
+                                            <option value="year1">First semester</option>
+                                            <option value="year2">Second semester</option>
+                                        </select>
+                                        <span class="bar"></span>
+                                        <label class="label">
+                                            <span class="label-char" style="--index: 0">S</span>
+                                            <span class="label-char" style="--index: 1">e</span>
+                                            <span class="label-char" style="--index: 2">l</span>
+                                            <span class="label-char" style="--index: 3">e</span>
+                                            <span class="label-char" style="--index: 4">c</span>
+                                            <span class="label-char" style="--index: 5">t</span>
+                                            <span class="label-char" style="--index: 6">&nbsp;</span>
+                                            <span class="label-char" style="--index: 7">s</span>
+                                            <span class="label-char" style="--index: 8">e</span>
+                                            <span class="label-char" style="--index: 9">m</span>
+                                            <span class="label-char" style="--index: 10">e</span>
+                                            <span class="label-char" style="--index: 11">s</span>
+                                            <span class="label-char" style="--index: 12">t</span>
+                                            <span class="label-char" style="--index: 13">e</span>
+                                            <span class="label-char" style="--index: 14">r</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+
+                                
+                                <div class="form-group mt-4">
+                                    <label for="projectDescription">Description :</label>
+                                    <textarea id="projectDescription" class="form-control" rows="3" name="projectDescription"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- File Upload Section -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingUpload">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseUpload">
+                                Upload Files
+                            </button>
+                        </h2>
+                        <div id="collapseUpload" class="accordion-collapse collapse" data-bs-parent="#projectAccordion">
+                            <div class="accordion-body">
+                                <div class="file-upload-container">
+                                    <input type="file" id="projectFiles" class="file-input" multiple name="projectFiles" accept=".pdf,.doc,.docx,.zip">
+                                    <label for="projectFiles" class="file-upload-label">
+                                        <div class="upload-icon">
+                                            <i class="fas fa-cloud-upload-alt"></i>
+                                        </div>
+                                        <div class="upload-text">
+                                            <p>Drag & drop files here or click to browse</p>
+                                            <small class="text-muted">Supported formats: .pdf, .doc, .docx, .zip</small>
+                                        </div>
+                                    </label>
+                                    <div id="fileList" class="file-list mt-3"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- NEW: Image Upload Section -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingImageUpload">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseImageUpload">
+                                Upload Images
+                            </button>
+                        </h2>
+                        <div id="collapseImageUpload" class="accordion-collapse collapse" data-bs-parent="#projectAccordion">
+                            <div class="accordion-body">
+                                <div class="file-upload-container">
+                                    <input type="file" id="imageFiles" class="file-input" accept=".jpg,.jpeg,.png,.gif" multiple name="projectImages">
+                                    <label for="imageFiles" class="file-upload-label">
+                                        <div class="upload-icon">
+                                            <i class="fas fa-image"></i>
+                                        </div>
+                                        <div class="upload-text">
+                                            <p>Drag & drop images here or click to browse</p>
+                                            <small class="text-muted">Supported formats: .jpg, .jpeg, .png, .gif</small>
+                                        </div>
+                                    </label>
+                                    <div id="imageList" class="file-list mt-3"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="buttons-containerr mt-4">
+                    <button class="btn-submit" type="submit">
+                        <span class="text-container">
+                            <span class="text">Upload Project</span>
+                        </span>
+                    </button>
+                    <button class="btn-cancel" type="button">
+                        <span class="text-container">
+                            <span class="text">Cancel</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</div>
+
+
+<!---------------------------------------- Slaide 4 ------------------------------------------------>
+
+             <div class="swiper-slide">
+                <form id="contentForm" method="POST" action="/api/add-content" enctype="multipart/form-data">
+    <div class="about-us" style="margin: 100px 0 0 0;">
+        <div class="upload-container">
+            <div class="card p-4 shadow-lg">
+                <h2 class="text-center mb-4">Upload Content</h2>
+                <div class="accordion" id="projectAccordion2">
+                    <!-- General Info Section -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingGeneral2">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGeneral2">
+                                General Information
+                            </button>
+                        </h2>
+                        <div id="collapseGeneral2" class="accordion-collapse collapse" data-bs-parent="#projectAccordion2">
+                            <div class="accordion-body">
+
+
+
+                            <div class="form-group">
+                                <label for="projectSubject">Subject :</label>
+                                <div class="wave-group">
+                                    <select id="projectSubject" class="input" required name="subject">
+                                        <option value="" disabled selected>&nbsp;</option>
+                                        <!-- Options will be dynamically inserted here -->
+                                    </select>
+                                    <span class="bar"></span>
+                                    <label class="label">
+                                        <span class="label-char" style="--index: 0">S</span>
+                                        <span class="label-char" style="--index: 1">e</span>
+                                        <span class="label-char" style="--index: 2">l</span>
+                                        <span class="label-char" style="--index: 3">e</span>
+                                        <span class="label-char" style="--index: 4">c</span>
+                                        <span class="label-char" style="--index: 5">t</span>
+                                        <span class="label-char" style="--index: 6">&nbsp;</span>
+                                        <span class="label-char" style="--index: 7">s</span>
+                                        <span class="label-char" style="--index: 8">u</span>
+                                        <span class="label-char" style="--index: 9">b</span>
+                                        <span class="label-char" style="--index: 10">j</span>
+                                        <span class="label-char" style="--index: 11">e</span>
+                                        <span class="label-char" style="--index: 12">c</span>
+                                        <span class="label-char" style="--index: 13">t</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                                <div class="form-group mt-4">
+                                    <label for="projectYear">Content :</label>
+                                    <div class="wave-group">
+                                        <select id="contentType" class="input" required name="contentType">
+                                            <option value="primary_reference">Primary Reference</option>
+                                            <option value="summary">Summary</option>
+                                            <option value="video">Video</option>
+                                          </select>
+                                        <span class="bar"></span>
+                                        <label class="label">
+                                            <span class="label-char" style="--index: 0">S</span>
+                                            <span class="label-char" style="--index: 1">e</span>
+                                            <span class="label-char" style="--index: 2">l</span>
+                                            <span class="label-char" style="--index: 3">e</span>
+                                            <span class="label-char" style="--index: 4">c</span>
+                                            <span class="label-char" style="--index: 5">t</span>
+                                            <span class="label-char" style="--index: 6">&nbsp;</span>
+                                            <span class="label-char" style="--index: 7">c</span>
+                                            <span class="label-char" style="--index: 8">o</span>
+                                            <span class="label-char" style="--index: 9">n</span>
+                                            <span class="label-char" style="--index: 10">t</span>
+                                            <span class="label-char" style="--index: 11">e</span>
+                                            <span class="label-char" style="--index: 12">n</span>
+                                            <span class="label-char" style="--index: 13">t</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+
+                                
+                                <div class="form-group mt-4">
+                                    <label for="projectDescription2">Description :</label>
+                                    <textarea id="projectDescription2" class="form-control" rows="3" name="description"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- File Upload Section -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingUpload2">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseUpload2">
+                                Upload Files
+                            </button>
+                        </h2>
+                        <div id="collapseUpload2" class="accordion-collapse collapse" data-bs-parent="#projectAccordion2">
+                            <div class="accordion-body">
+                                <div class="file-upload-container">
+                                    <input type="file" id="projectFiles2" class="file-input" multiple
+                                    accept=".pdf, .doc, .docx, .zip" name="contentFile">
+                                    <label for="projectFiles2" class="file-upload-label">
+                                        <div class="upload-icon">
+                                            <i class="fas fa-cloud-upload-alt"></i>
+                                        </div>
+                                        <div class="upload-text">
+                                            <p>Drag & drop files here or click to browse</p>
+                                            <small class="text-muted">Supported formats: .pdf, .doc, .docx, .zip</small>
+                                        </div>
+                                    </label>
+                                    <div id="fileList2" class="file-list mt-3"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="buttons-containerr mt-4">
+                    <button class="btn-submit" type="submit">
+                        <span class="text-container">
+                            <span class="text">Upload Project</span>
+                        </span>
+                    </button>
+                    <button class="btn-cancel" type="button">
+                        <span class="text-container">
+                            <span class="text">Cancel</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+     </div>
+    </form>
+</div>
+
+
+<!---------------------------------------- Slide 5 (Add Subjects) ---------------------------------------->
+<div class="swiper-slide">
+    <form id="subjectForm" method="POST" action="/add-subject" enctype="multipart/form-data">
+    <div class="about-us" style="margin: 40px 0 0 0;">
+        <div class="upload-container">
+            <div class="card p-4 shadow-lg">
+                <h2 class="text-center mb-4">Add New Subject</h2>
+                <div class="accordion" id="subjectAccordion">
+                    <!-- General Info Section -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingSubjectInfo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSubjectInfo">
+                                Subject Information
+                            </button>
+                        </h2>
+                        <div id="collapseSubjectInfo" class="accordion-collapse collapse" data-bs-parent="#subjectAccordion">
+                            <div class="accordion-body">
+                                <div class="form-group">
+                                    <label for="subjectTitle">Subject Title:</label>
+                                    <div class="wave-group">
+                                        <input required type="text" id="subjectTitle" class="input">
+                                        <span class="bar"></span>
+                                        <label class="label">
+                                            <span class="label-char" style="--index: 0">E</span>
+                                            <span class="label-char" style="--index: 1">n</span>
+                                            <span class="label-char" style="--index: 2">t</span>
+                                            <span class="label-char" style="--index: 3">e</span>
+                                            <span class="label-char" style="--index: 4">r</span>
+                                            <span class="label-char" style="--index: 5">&nbsp;</span>
+                                            <span class="label-char" style="--index: 6">t</span>
+                                            <span class="label-char" style="--index: 7">i</span>
+                                            <span class="label-char" style="--index: 8">t</span>
+                                            <span class="label-char" style="--index: 9">l</span>
+                                            <span class="label-char" style="--index: 10">e</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mt-4">
+                                    <label for="subjectYear">Year:</label>
+                                    <div class="wave-group">
+                                        <select id="subjectYear" class="input" required>
+                                            <option value="" disabled selected>&nbsp;</option>
+                                            <option value="1">First Year</option>
+                                            <option value="2">Second Year</option>
+                                            <option value="3">Third Year</option>
+                                            <option value="4">Fourth Year</option>
+                                        </select>
+                                        <span class="bar"></span>
+                                        <label class="label">
+                                            <span class="label-char" style="--index: 0">S</span>
+                                            <span class="label-char" style="--index: 1">e</span>
+                                            <span class="label-char" style="--index: 2">l</span>
+                                            <span class="label-char" style="--index: 3">e</span>
+                                            <span class="label-char" style="--index: 4">c</span>
+                                            <span class="label-char" style="--index: 5">t</span>
+                                            <span class="label-char" style="--index: 6">&nbsp;</span>
+                                            <span class="label-char" style="--index: 7">y</span>
+                                            <span class="label-char" style="--index: 8">e</span>
+                                            <span class="label-char" style="--index: 9">a</span>
+                                            <span class="label-char" style="--index: 10">r</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group mt-4">
+                                    <label for="projectYear">Content :</label>
+                                    <div class="wave-group">
+                                        <select id="subjectContentType" class="input" required name="contentType">
+                                            <option value="primary_reference">Primary Reference</option>
+                                            <option value="summary">Summary</option>
+                                            <option value="video">Video</option>
+                                          </select>
+                                        <span class="bar"></span>
+                                <div class="form-group mt-4">
+                                    <label class="mb-3">Majors:</label>
+                                    <div class="majors-checkbox-group">
+                                        <!-- Computer Science -->
+                                        <div class="major-option">
+                                            <label class="custom-checkbox">
+                                                <input type="checkbox" id="majorCS" value="computer-science" name="major">
+                                                <svg viewBox="0 0 64 64" height="1.5em" width="1.5em">
+                                                    <path d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16" 
+                                                          pathLength="575.0541381835938" class="path"></path>
+                                                </svg>
+                                                <span>Computer Science</span>
+                                            </label>
+                                        </div>
+                                        
+                                        <!-- Software Engineering -->
+                                        <div class="major-option">
+                                            <label class="custom-checkbox">
+                                                <input type="checkbox" id="majorSE" name="majors" value="software-engineering">
+                                                <svg viewBox="0 0 64 64" height="1.5em" width="1.5em">
+                                                    <path d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16" 
+                                                          pathLength="575.0541381835938" class="path"></path>
+                                                </svg>
+                                                <span>Software Engineering</span>
+                                            </label>
+                                        </div>
+                                        
+                                        <!-- Computer Information Systems -->
+                                        <div class="major-option">
+                                            <label class="custom-checkbox">
+                                                <input type="checkbox" id="majorCIS" value="management-information-systems" name="major">
+                                                <svg viewBox="0 0 64 64" height="1.5em" width="1.5em">
+                                                    <path d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16" 
+                                                          pathLength="575.0541381835938" class="path"></path>
+                                                </svg>
+                                                <span>Computer Information Systems</span>
+                                            </label>
+                                        </div>
+                                        
+                                        <!-- Artificial Intelligence -->
+                                        <div class="major-option">
+                                            <label class="custom-checkbox">
+                                                <input type="checkbox" id="majorAI" value="data-science" name="major">
+                                                <svg viewBox="0 0 64 64" height="1.5em" width="1.5em">
+                                                    <path d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16" 
+                                                          pathLength="575.0541381835938" class="path"></path>
+                                                </svg>
+                                                <span>Artificial Intelligence</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                        <label class="label">
+                                            <span class="label-char" style="--index: 0">S</span>
+                                            <span class="label-char" style="--index: 1">e</span>
+                                            <span class="label-char" style="--index: 2">l</span>
+                                            <span class="label-char" style="--index: 3">e</span>
+                                            <span class="label-char" style="--index: 4">c</span>
+                                            <span class="label-char" style="--index: 5">t</span>
+                                            <span class="label-char" style="--index: 6">&nbsp;</span>
+                                            <span class="label-char" style="--index: 7">c</span>
+                                            <span class="label-char" style="--index: 8">o</span>
+                                            <span class="label-char" style="--index: 9">n</span>
+                                            <span class="label-char" style="--index: 10">t</span>
+                                            <span class="label-char" style="--index: 11">e</span>
+                                            <span class="label-char" style="--index: 12">n</span>
+                                            <span class="label-char" style="--index: 13">t</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group mt-4">
+                                    <label for="subjectDescription">Description:</label>
+                                    <textarea id="subjectDescription" class="form-control" rows="3"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- File Upload Section -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingSubjectFiles">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSubjectFiles">
+                                Upload Files
+                            </button>
+                        </h2>
+                        <div id="collapseSubjectFiles" class="accordion-collapse collapse" data-bs-parent="#subjectAccordion">
+                            <div class="accordion-body">
+                                <div class="file-upload-container">
+                                    <input type="file" 
+                                    id="subjectFiles" 
+                                    class="file-input" 
+                                    multiple 
+                                    accept=".pdf, .doc, .ppt, .pptx, .zip" 
+                                    name="subjectFile" 
+                                    required>                                    <label for="subjectFiles" class="file-upload-label" >
+                                        <div class="upload-icon">
+                                            <i class="fas fa-cloud-upload-alt"></i>
+                                        </div>
+                                        <div class="upload-text">
+                                            <p>Drag & drop files here or click to browse</p>
+                                            <small class="text-muted">Supported formats: .pdf, .doc, .ppt, .pptx</small>
+                                        </div>
+                                    </label>
+                                    <div id="subjectFileList" class="file-list mt-3"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <!-- Inside Slide 5 (Add Content) -->
+<div class="accordion-item">
+    <h2 class="accordion-header" id="headingImageUpload3">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseImageUpload3">
+            Upload Images
+        </button>
+    </h2>
+    <div id="collapseImageUpload3" class="accordion-collapse collapse" data-bs-parent="#subjectAccordion">
+        <div class="accordion-body">
+            <div class="file-upload-container">
+                <input type="file" 
+                id="imageFiles3" 
+                class="file-input" 
+                accept=".jpg, .jpeg, .png, .gif"  
+                name="subjectImage"  
+                required>                <label for="imageFiles3" class="file-upload-label">
+                    <div class="upload-icon">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <div class="upload-text">
+                        <p>Drag & drop images here or click to browse</p>
+                        <small class="text-muted">Supported formats: .jpg, .jpeg, .png, .gif</small>
+                    </div>
+                </label>
+                <div id="imageList3" class="file-list mt-3"></div>
+            </div>
+        </div>
+    </div>
+</div>
+                
+                <!-- Action Buttons -->
+                <div class="buttons-containerr mt-4">
+                    <button id="submitSubjectBtn" class="btn-submit" type="submit">
+                        <span class="text-container">
+                            <span class="text">Add Subject</span>
+                        </span>
+                    </button>
+                    <button class="btn-cancel" type="button">
+                        <span class="text-container">
+                            <span class="text">Cancel</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</div>
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </main>
+
+
+
+        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
+        <script defer src="/js/admin-page/main.js"></script>
+
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
+            crossorigin="anonymous"></script>
+
+        
+</body>
+</html>

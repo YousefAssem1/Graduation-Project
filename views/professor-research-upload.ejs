@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+     
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/professor-research-upload/Edit style.css">
+
+    <title>Uploade file</title>
+
+</head>
+<body>
+
+
+<section class="bg-dark " style="height: 70px;" ></section>
+        
+    
+
+
+
+
+
+
+
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-1 fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/after_login">
+            <p class="masfofa">Masfofa<span>!</span></p>
+        </a>
+        <button class="navbar-toggler" 
+                type="button" 
+                data-bs-toggle="collapse" 
+                data-bs-target="#navmenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navmenu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link d-flex align-items-center profile-link" 
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src=<%= userData.profileimage %> alt="Profile" class="rounded-circle" width="40" height="40">
+                        <p class="mb-0 ms-2 profile-name"><%= userData.fname %></p>
+                        <i class="fas fa-chevron-down ms-auto"></i> 
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="/profile-page" class="dropdown-item">Profile</a>
+                        <a href="/logout" class="dropdown-item">Log out</a>
+                    </div>
+                </li>  
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="/after_login" class="nav-link">Home</a>
+                </li>  
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="/professor-page" class="nav-link">Prof page </a>
+                </li> 
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<br />
+<br />
+
+
+
+
+  
+  
+   
+  
+        <div class="container my-5">
+          <div id="faq">
+
+
+            
+
+
+          <div class="card p-4 shadow-lg">
+            <h2 class="text-center mb-4" style="color: #526ebb;">Uploade file</h2>
+            <div class="accordion" id="faqAccordion">
+      <form action="/professor-research-upload" method="POST" enctype="multipart/form-data">
+              <!-- Q1 -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                    General
+                  </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    <table>
+                        <tr>
+                            <th>Project title : </th>
+                            <th>
+                                <div class="wave-group" style="margin: 0 0 0 30px;">
+            <input required="" type="text" class="input" id="name" name = "title">
+            <span class="bar"></span>
+            <label class="label">
+                <span class="label-char" style="--index: 0">P</span>
+                <span class="label-char" style="--index: 1">r</span>
+                <span class="label-char" style="--index: 2">o</span>
+                <span class="label-char" style="--index: 3">j</span>
+                <span class="label-char" style="--index: 4">e</span>
+                <span class="label-char" style="--index: 5">c</span>
+                <span class="label-char" style="--index: 6">t</span>
+                <span class="label-char" style="--index: 7">&nbsp;</span>
+                <span class="label-char" style="--index: 8">n</span>
+                <span class="label-char" style="--index: 9">a</span>
+                <span class="label-char" style="--index: 10">m</span>
+                <span class="label-char" style="--index: 11">e</span>
+            </label>
+        </div>
+                            </th>
+                        </tr>
+
+                        <tr>
+                            <th style="margin: 60px 0 0 0;"><label for="projectYear" class="mb-3">Content :</label></th>
+                            <th style="margin: 50px 0 0 60px;">
+                                
+            <div class="form-group">
+              <div class="wave-group">
+                  <select id="projectYear" class="input" required name="status">
+                      <option value="" disabled selected>&nbsp;</option>
+                      <option value="year1">Completed</option>
+                      <option value="year2">In progress</option>
+                  </select>
+                  <span class="mt-4" ></span>
+                  <label class="label">
+                      <span class="label-char" style="--index: 0">S</span>
+                      <span class="label-char" style="--index: 1">e</span>
+                      <span class="label-char" style="--index: 2">l</span>
+                      <span class="label-char" style="--index: 3">e</span>
+                      <span class="label-char" style="--index: 4">c</span>
+                      <span class="label-char" style="--index: 5">t</span>
+                      <span class="label-char" style="--index: 6">&nbsp;</span>
+                      <span class="label-char" style="--index: 7">c</span>
+                      <span class="label-char" style="--index: 8">o</span>
+                      <span class="label-char" style="--index: 9">n</span>
+                      <span class="label-char" style="--index: 10">t</span>
+                      <span class="label-char" style="--index: 11">e</span>
+                      <span class="label-char" style="--index: 12">n</span>
+                      <span class="label-char" style="--index: 13">t</span>
+                  </label>
+              </div>
+            </div>
+
+                            </th>
+                        </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+      
+
+              <!-- Q2 -->
+              <div class="accordion-item" >
+                <h2 class="accordion-header" id="headingTwo" >
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" >
+                    Uploade file 
+                  </button>
+                </h2>
+
+
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion" >
+                    <table   >
+                        <tr>
+                            <th> <label>Project</label> </th>
+                            <td><input type="file" id="file" class="cc" name="file" accept=".pdf,.doc,.docx" /> <label for="file" class="ll" id="file-name-label" style="width: 250px; padding: 75px 0 0 0;">Upload File</label>  </td>
+                        </tr>
+    </table>
+</div>
+</div>
+
+              
+                </div>
+              </div>
+
+ 
+<!----------------------------------------   Buttons Container  ------------------------------------------------>
+<div class="buttons-container">
+  <button class="btn-31" type="submit">
+    <span class="text-container">
+      <span class="text">Save Changes</span>
+    </span>
+  </button>
+
+  <button class="btn-31" type="submit">
+    <span class="text-container">
+      <span class="text">Cancel</span>
+    </span>
+  </button>
+</div>
+</form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  
+
+
+      <section class="bg-dark text-light " style="height: 200px;">
+   
+        <div class="d-sm-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center"> 
+                <h1 class="me-3" style="font-size: 50px;" align="center">Thanks</h1> 
+            </div>
+    </div>
+
+
+
+    
+</section>
+  
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   
+    <script src="./js/owl.carousel.min.js"></script>
+<script src="/js/professor-research-upload/main.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
+    crossorigin="anonymous"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,435 @@
+/* Base Styles */
+:root {
+    --primary-color: #7495ED;
+    --secondary-color: #523DB9;
+    --dark-color: #1a1a1a;
+    --light-color: #f8f9fa;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    background-color: #fff;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+}
+
+.text-brand {
+    color: var(--primary-color);
+}
+
+/* Navbar */
+@media (min-width: 768px){
+   .news-input {
+    width: 50%;
+    margin-right: 20px;
+   }
+}
+
+.masfofa{
+   font-family: "Pacifico" , sans-serif ;
+}
+
+.navbar-brand span{
+   color:#523DB9;
+}
+ 
+.btn{
+   padding: 9px 24px;
+   font-weight: 500;
+}
+.btn:hover {
+   transform: translateY(-10px); 
+   box-shadow: 0 4px 8px #6582d0bc; 
+   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+ 
+ 
+.btn-brand {
+     background-color: #7495ED;
+     color: #ffffff;
+     border-color: #7495ED;
+     transition: background-color 0.3s, color 0.3s; 
+}
+.btn-small {
+   font-size: 0.85rem; 
+   padding: 0.375rem 0.75rem;
+}
+ 
+.btn-brand:hover {
+     background-color: #6581d0;  
+     color: #ffffff; 
+     border-color: #6581d0; 
+}
+.card:hover {
+   transform: translateY(-10px); 
+   box-shadow: 0 4px 8px #6582d0bc; 
+   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-name {
+  margin-left: 10px;
+  color: azure;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #523db9c1;
+  border-radius: 5px;
+  min-width: 180px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-menu a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-menu a:hover {
+  background-color: #2c3e50;
+}
+
+.profile-link:hover .dropdown-menu,
+.profile-link:focus .dropdown-menu {
+  display: block;
+}
+
+.profile-link p {
+  margin-bottom: 0;
+}
+
+/* Professors Grid */
+.professors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.professor-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.professor-card {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.professor-image {
+    width: 100%;
+    height: 100%;
+}
+
+.professor-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Slide-in panels */
+.one {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(116, 149, 237, 0.9);
+    right: -100%;
+    transition: 0.8s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    top: 0;
+}
+
+.one div h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.one div p {
+    margin-bottom: 0.3rem;
+}
+
+.expertise {
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.two {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(82, 61, 185, 0.9);
+    right: -200%;
+    transition: 0.8s;
+    top: 0;
+}
+
+.professor-card:hover .one {
+    right: 0;
+}
+
+.professor-card:hover .two {
+    right: 100%;
+}
+
+/* Buttons */
+.btn-brand {
+    background-color: white;
+    border-color: white;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.btn-brand:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-color: rgba(255, 255, 255, 0.8);
+    color: var(--primary-color);
+}
+
+/* Footer */
+footer {
+    background-color: var(--dark-color);
+}
+
+footer a {
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .hero-section {
+        text-align: center;
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+    
+    .hero-img {
+        margin-top: 30px;
+        max-width: 250px;
+    }
+    
+    .professors-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+hr {
+    height: 2px; 
+    background-color: #523db9c1; 
+    border: 2px;
+    margin: 0px 0;
+}
+
+.bb{
+    margin-left: 100px;
+    padding-top: 50px;
+}
+
+/* Filter Components Styles */
+.buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 30px 0;
+}
+
+.filter-button {
+    border: 1px solid #7495ED;
+    background: transparent;
+    color: #7495ED;
+    border-radius: 20px;
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.filter-button:hover {
+    background-color: #7495ED;
+    color: white;
+}
+
+.filter-button.active {
+    background-color: #7495ED;
+    color: white;
+}
+
+.items-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin: 30px 0;
+}
+
+.filter-item {
+    padding: 15px 25px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: block; /* Default display */
+}
+
+.filter-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(116, 149, 237, 0.2);
+}
+
+.filter-item p {
+    margin: 0;
+    color: #333;
+}
+
+.filter-item .category {
+    color: #64748b;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.filter-button.multi-active {
+    background-color: #7495ED;
+    color: white;
+    border-color: #7495ED;
+}
+
+/* Professors Grid Layout */
+.professors-grid.filtered {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Card Animations */
+.professor-card {
+    transition: all 0.3s ease;
+    transform-origin: center;
+    width: 280px; /* Fixed width for consistent flex layout */
+}
+
+.professor-card.hiding {
+    transform: scale(0.9);
+    opacity: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+.professor-card.hidden {
+    display: none;
+}
+
+.professor-card.showing {
+    animation: cardFadeIn 0.3s ease forwards;
+}
+
+@keyframes cardFadeIn {
+    from { 
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to { 
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* No Results Animation */
+.no-results {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.no-results.showing {
+    display: block;
+    opacity: 1;
+}
+
+@media screen and (max-width: 600px) {
+    .ll{
+        padding-left: 45px;
+    }
+}
+
+/* Search Box Styles */
+.box {
+    height: 50px;
+    display: flex;
+    cursor: pointer;
+    padding: 10px 25px;
+    margin: 0 0 25px 0;
+    background-color: #fff;
+    border-radius: 30px;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    margin-left: 20px;
+}
+
+.box:hover input {
+    width: 400px;
+}
+
+.box input {
+    width: 0;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    transition: 0.8s;
+    background: transparent;
+}
+
+.box a .fas {
+    color: #1daf;
+    font-size: 18px;
+}
+
+.ff{
+  min-height: 450px;
+}
+
+@media (max-width: 768px) {
+    .box:hover input {
+        width: 250px;
+    }
+    .ff{
+      min-height: 350px;
+    }
+}
+
+.vv{
+  margin: 0 0 0 -20px;
+}
+
+.kk{
+    margin-left: -100px;
+}
