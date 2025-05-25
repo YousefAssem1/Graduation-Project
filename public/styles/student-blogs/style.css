@@ -1030,10 +1030,6 @@ hr {
 
 
 
-.hight{
-	min-height: 510px;
-}
-
 
 .ss{
 	width: 200px;
@@ -1332,4 +1328,12 @@ hr {
     overflow-y: hidden;
     resize: none; 
     transition: height 0.2s ease; 
+}
+
+
+
+
+
+.hig{
+	min-height: 510px;
 }
