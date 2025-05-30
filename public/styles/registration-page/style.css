@@ -173,6 +173,7 @@ span.login-label {
 }
 
 button.login-btn {
+    margin: 20px 0 ;
     width: 100%;
     background: #3d5ff5;
     border-radius: 20px;
@@ -182,7 +183,6 @@ button.login-btn {
     font-weight: 700;
     font-size: 14px;
     letter-spacing: 2px;
-    margin-top: 20px;
     cursor: pointer;
     box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.25);
 }
@@ -193,7 +193,7 @@ button.login-btn:hover {
 }
 
 span.footer {
-    margin-top: 20px;
+    margin: 20px 0 0 10px;
     color: #05e8f0;
     font-weight: 100;
     font-size: 14px;
