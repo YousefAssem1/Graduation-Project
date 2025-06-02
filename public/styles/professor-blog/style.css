@@ -944,3 +944,8 @@ hr {
     padding: 10px 20px;
     word-wrap: break-word;
 }
+
+
+.hig{
+	min-height: 579px;
+}

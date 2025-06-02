@@ -41,7 +41,6 @@
                     </a>
                     <div class="dropdown-menu">
                         <a href="#" class="dropdown-item">Profile</a>
-                        <a href="#" class="dropdown-item">Settings</a>
                         <a href="/logout" class="dropdown-item">Log out</a>
                     </div>
                 </li>  
@@ -72,7 +71,7 @@
       
       <section class="section gradient-blue">
         <!-------------back end user name & discription ------------------>
-        <img src='<%= userData.profileimage %>' style="margin: -150px 0 0 0; -webkit-border-radius: 50%; -moz-border-radius: 50%; border-radius: 50%; -o-object-fit: cover; object-fit: cover; max-height: 450px; max-width: 450px ;">        
+        <img src='<%= userData.profileimage %>' style="width: 350px; height: 350px; margin: -130px 0 0 0; -webkit-border-radius: 50%; -moz-border-radius: 50%; border-radius: 50%; -o-object-fit: cover; object-fit: cover;">        
         <h1 class="kk">Welcome <label><%= userData.fname %> <%= userData.lname %></label> </h1>
 
         <p> <label> <%= userData.discription %> </label> </p>
@@ -80,7 +79,7 @@
         <!-------------------------------------------------->   
 
 <section class="section">
-    <fieldset style="border-color: #1e1e1e; width: 700px; height: 700px;">
+    <fieldset style="border-color: #1e1e1e; width: 700px; height: 780px;">
         <div class="content">
             <table>
                 <tr>

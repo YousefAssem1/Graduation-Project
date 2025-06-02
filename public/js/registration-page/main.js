@@ -449,47 +449,186 @@ function toggleSelects() {
 
     // Form validation
     function validateForm() {
-        const firstName = document.getElementById('firstName').value;
-        const lastName = document.getElementById('lastName').value;
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        const confirmPassword = document.getElementById('confirmPassword').value;
-        const role = document.getElementById('role-select').value;
+        let isValid = true;
         
-        // Basic required field validation
-        if (!firstName || !lastName || !email || !password || !confirmPassword || !role) {
-            alert('Please fill in all required fields');
-            return false;
+        // Clear all previous error states
+        document.querySelectorAll('.wave-group').forEach(group => {
+            group.classList.remove('error');
+        });
+        
+        // Validate required fields
+        const requiredFields = [
+            { id: 'firstName', message: 'First name is required' },
+            { id: 'lastName', message: 'Last name is required' },
+            { id: 'email', message: 'Email is required' },
+            { id: 'password', message: 'Password is required' },
+            { id: 'confirmPassword', message: 'Confirm password is required' }
+        ];
+        
+        requiredFields.forEach(field => {
+            const element = document.getElementById(field.id);
+            if (!element.value.trim()) {
+                element.closest('.wave-group').classList.add('error');
+                isValid = false;
+            }
+        });
+        
+        // Validate role selection
+        const roleSelect = document.getElementById('role-select');
+        if (!roleSelect.value) {
+            roleSelect.closest('.wave-group').classList.add('error');
+            isValid = false;
         }
         
-        // Email validation
+        // Validate email format
         if (!handleEmailValidation()) {
-            return false;
+            isValid = false;
         }
         
-        // Password matching validation
+        // Validate password match
         if (!checkPasswords()) {
-            return false;
+            isValid = false;
         }
         
-        // Additional validation for students
-         if (role === 'student') {
-        const major = document.getElementById('another-select').value;
-        if (!major) {
-            alert('Please select your major');
+        // Role-specific validation
+        if (roleSelect.value === 'student') {
+            const majorSelect = document.getElementById('another-select');
+            if (!majorSelect.value) {
+                majorSelect.closest('.wave-group').classList.add('error');
+                isValid = false;
+            }
+        } else if (roleSelect.value === 'professor') {
+            const requiredProfessorFields = [
+                { id: 'degree-select', message: 'Degree is required' },
+                { id: 'university-select', message: 'University is required' },
+                { id: 'college-select', message: 'College is required' }
+            ];
+            
+            requiredProfessorFields.forEach(field => {
+                const element = document.getElementById(field.id);
+                if (!element.value) {
+                    element.closest('.wave-group').classList.add('error');
+                    isValid = false;
+                }
+            });
+        }
+        
+        return isValid;
+    }
+
+
+// Error modal functionality
+const errorModal = document.getElementById('errorModal');
+const errorModalMessage = document.getElementById('modalMessage');
+const errorCloseBtn = document.querySelector('.close'); // لاحظ التغيير هنا
+
+let autoCloseTimeout = null;
+
+function showErrorModal(message) {
+    errorModalMessage.textContent = message;
+    errorModal.style.display = 'block';
+
+    if (autoCloseTimeout) {
+        clearTimeout(autoCloseTimeout);
+    }
+
+    autoCloseTimeout = setTimeout(() => {
+        closeErrorModal();
+    }, 5000);
+}
+
+function closeErrorModal() {
+    errorModal.style.display = 'none';
+
+    if (autoCloseTimeout) {
+        clearTimeout(autoCloseTimeout);
+        autoCloseTimeout = null;
+    }
+}
+
+if (errorCloseBtn) {
+    errorCloseBtn.addEventListener('click', () => {
+        closeErrorModal();
+    });
+}
+
+window.addEventListener('click', (event) => {
+    if (event.target === errorModal) {
+        closeErrorModal();
+    }
+});
+
+
+function validateForm() {
+    // Validate required fields
+    if (!document.getElementById('firstName').value.trim()) {
+        showErrorModal('First name is required');
+        return false;
+    }
+    
+    if (!document.getElementById('lastName').value.trim()) {
+        showErrorModal('Last name is required');
+        return false;
+    }
+    
+    if (!document.getElementById('email').value.trim()) {
+        showErrorModal('Email is required');
+        return false;
+    }
+    
+    if (!document.getElementById('password').value) {
+        showErrorModal('Password is required');
+        return false;
+    }
+    
+    if (!document.getElementById('confirmPassword').value) {
+        showErrorModal('Confirm password is required');
+        return false;
+    }
+    
+    if (!document.getElementById('role-select').value) {
+        showErrorModal('Please select your role');
+        return false;
+    }
+    
+    // Email validation
+    if (!handleEmailValidation()) {
+        showErrorModal('Please enter a valid email address');
+        return false;
+    }
+    
+    // Password matching validation
+    if (!checkPasswords()) {
+        showErrorModal('Passwords do not match');
+        return false;
+    }
+    
+    // Role-specific validation
+    const role = document.getElementById('role-select').value;
+    if (role === 'student') {
+        if (!document.getElementById('another-select').value) {
+            showErrorModal('Please select your major');
             return false;
         }
     } else if (role === 'professor') {
-        const degree = document.getElementById('degree-select').value;
-        const college = document.getElementById('college-select').value;
-        const university = document.getElementById('university-select').value;
+        if (!document.getElementById('degree-select').value) {
+            showErrorModal('Please select your degree');
+            return false;
+        }
         
-        if (!degree || !college || !university) {
-            alert('Please fill in all professor fields');
+        if (!document.getElementById('university-select').value) {
+            showErrorModal('Please select your university');
+            return false;
+        }
+        
+        if (!document.getElementById('college-select').value) {
+            showErrorModal('Please select your college');
             return false;
         }
     }
     
     return true;
 }
+
+
 });

@@ -555,3 +555,105 @@ body.active .modal-box {
 .wave-group.error .label-char {
     color: red !important;
 }
+
+
+
+ .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal-content {
+            position: relative;
+            background: linear-gradient(135deg, #ffffff 0%, #f5f7fa 100%);
+            margin: 10% auto;
+            padding: 50px;
+            width: 90%;
+            max-width: 400px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            transform: translateY(-20px);
+            opacity: 0;
+            animation: slideUp 0.4s ease-out 0.1s forwards;
+        }
+
+        .modal-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: linear-gradient(90deg, #7494ec 0%, #09abc3 100%);
+            border-radius: 15px 15px 0 0;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #faf7f7;
+            font-size: 50px;
+            transition: all 0.3s;
+            margin: -20px 0 0 0;
+        }
+
+        .close:hover {
+            color: #ff4757;
+            transform: rotate(90deg);
+            cursor: pointer;
+        }
+
+        #modalMessage {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+            margin: 20px 0;
+            padding: 0 10px;
+        }
+
+        .modal-icon {
+            font-size: 60px;
+            margin: 20px 0;
+            color: #ff4757;
+            animation: bounce 0.6s;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to { 
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
