@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+   <html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!--=============== REMIXICONS ===============-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
+      <!--=============== CSS ===============-->
+      <link rel="stylesheet" href="/styles/admin-login/style.css">
+      <title>admin login </title>
+   </head>
+   <body>
+      <!--=============== LOGIN IMAGE ===============-->
+      <svg class="login__blob" viewBox="0 0 566 840" xmlns="http://www.w3.org/2000/svg">
+         <mask id="mask0" mask-type="alpha">
+            <path d="M342.407 73.6315C388.53 56.4007 394.378 17.3643 391.538 
+            0H566V840H0C14.5385 834.991 100.266 804.436 77.2046 707.263C49.6393 
+            591.11 115.306 518.927 176.468 488.873C363.385 397.026 156.98 302.824 
+            167.945 179.32C173.46 117.209 284.755 95.1699 342.407 73.6315Z"/>
+         </mask>
+         <g mask="url(#mask0)">
+            <path d="M342.407 73.6315C388.53 56.4007 394.378 17.3643 391.538 
+            0H566V840H0C14.5385 834.991 100.266 804.436 77.2046 707.263C49.6393 
+            591.11 115.306 518.927 176.468 488.873C363.385 397.026 156.98 302.824 
+            167.945 179.32C173.46 117.209 284.755 95.1699 342.407 73.6315Z"/>
+            <image class="login__img" href="/images/admin-login/m1.jpg"/>
+         </g>
+      </svg>      
+      <!--=============== LOGIN ===============-->
+      <div class="login container grid" id="loginAccessRegister">
+         <!--===== LOGIN ACCESS =====-->
+         <div class="login__access">
+            <h1 class="login__title">Log in to your account.</h1>
+            <div class="login__area">
+               <form action="/login_admin" method="post" class="login__form">
+                  <div class="login__content grid">
+                     <div class="login__box">
+                        <input type="email" id="email" required placeholder=" " class="login__input" name="email">
+                        <label for="email" class="login__label">Email</label>
+                        <i class="ri-mail-fill login__icon"></i>
+                     </div>
+                     <div class="login__box">
+                        <input type="password" id="password" required placeholder=" " class="login__input" name="password">
+                        <label for="password" class="login__label">Password</label>
+                        <i class="ri-eye-off-fill login__icon login__password" id="loginPassword"></i>
+                     </div>
+                  </div>
+                  <a href="/forget-password" class="login__forgot">Forgot your password?</a>
+                  <button type="submit" class="login__button">Login</button>
+               </form>
+               </div>
+            </div>
+         </div>
+      </div>
+      
+      <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-icon"><i class="bx bx-error-circle"></i></div>
+            <p id="modalMessage"></p>
+        </div>
+ </div>
+      <!--=============== MAIN JS ===============-->
+      <script src="/js/admin-login/main.js"></script>
+          <script>
+        // Function to get query parameters
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Function to show modal with message
+        function showModal(message, type = 'error') {
+            const modal = document.getElementById('errorModal');
+            const modalMessage = document.getElementById('modalMessage');
+            const modalIcon = document.querySelector('.modal-icon i');
+            
+            // Update icon based on type
+            if (type === 'success') {
+                modalIcon.className = 'bx bx-check-circle';
+                modalIcon.style.color = '#4CAF50';
+            } else if (type === 'warning') {
+                modalIcon.className = 'bx bx-error';
+                modalIcon.style.color = '#FFC107';
+            } else {
+                modalIcon.className = 'bx bx-error-circle';
+                modalIcon.style.color = '#ff4757';
+            }
+            
+            modalMessage.textContent = message;
+            modal.style.display = 'block';
+            
+            // Close modal after 5 seconds
+            setTimeout(() => {
+                closeModal();
+            }, 5000);
+            
+            // Clean the URL after showing the message
+            if (getQueryParam('message')) {
+                const cleanUrl = window.location.pathname;
+                window.history.replaceState({}, document.title, cleanUrl);
+            }
+        }
+
+        // Close modal with animation
+        function closeModal() {
+            const modal = document.getElementById('errorModal');
+            const modalContent = modal.querySelector('.modal-content');
+            
+            // Add closing animation
+            modalContent.style.animation = 'none';
+            modalContent.offsetHeight; // Trigger reflow
+            modalContent.style.animation = 'slideUp 0.3s ease-in reverse forwards';
+            
+            setTimeout(() => {
+                modal.style.display = 'none';
+                // Reset animation for next opening
+                modalContent.style.animation = '';
+            }, 300);
+        }
+
+        // Close modal when clicking on X
+        document.querySelector('.close').addEventListener('click', closeModal);
+
+        // Close modal when clicking outside of it
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('errorModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Check for message in query parameters on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const message = getQueryParam('message');
+            const messageType = getQueryParam('type') || 'error';
+            
+            if (message) {
+                showModal(decodeURIComponent(message), messageType);
+            }
+        });
+
+        // Function to trigger modals for demo purposes
+        function triggerModal(type) {
+            const messages = {
+                error: 'This is an error message from the demo',
+                success: 'This is a success message from the demo',
+                warning: 'This is a warning message from the demo'
+            };
+            showModal(messages[type], type);
+        }
+    </script>
+   </body>
+</html>

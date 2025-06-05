@@ -1,0 +1,311 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #8b51ff 0%, #1b191e 100%);
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 450px;
+}
+
+form {
+    padding: 40px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+form h1 {
+    text-align: center;
+    margin: 0 0 60px 0;
+    color: #333;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.input-group {
+    margin-bottom: 40px;
+    position: relative;
+}
+
+/* Wave Group Styles */
+.wave-group {
+    position: relative;
+}
+
+.wave-group .input {
+    display: block;
+    width: 100%;
+    font-size: 16px;
+    padding: 10px 10px 10px 5px;
+    border: none;
+    color: #000;
+    border-bottom: 1px solid #000;
+    background-color: transparent;
+}
+
+.wave-group .input:focus {
+    outline: none;
+}
+
+.wave-group .label {
+    position: absolute;
+    left: 5px;
+    top: 10px;
+    font-size: 18px;
+    font-weight: normal;
+    pointer-events: none;
+    display: flex;
+    color: #666;
+}
+
+.wave-group .label-char {
+    transition: 0.2s ease all;
+    transition-delay: calc(var(--index) * .05s);
+}
+
+.wave-group .input:focus~label .label-char,
+.wave-group .input:valid~label .label-char {
+    font-size: 14px;
+    color: #000;
+    transform: translateY(-20px);
+}
+
+.wave-group .bar {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.wave-group .bar:before,
+.wave-group .bar:after {
+    content: '';
+    position: absolute;
+    bottom: 1px;
+    width: 0;
+    height: 2px;
+    background: #000;
+    transition: 0.2s ease all;
+}
+
+.wave-group .bar:before {
+    left: 50%;
+}
+
+.wave-group .bar:after {
+    right: 50%;
+}
+
+.wave-group .input:focus~.bar:before,
+.wave-group .input:focus~.bar:after {
+    width: 50%;
+}
+
+/* Password Field Specific Styles */
+.password-field {
+    --c-text: #000;
+    --c-text-light: #a1a1b6;
+    --c-text-selection: #09abc3;
+    --c-background: #fff;
+    --c-background-selection: rgba(9, 171, 195, 0.15);
+    --c-border: #e2e2ed;
+    --c-border-hover: #d0d0db;
+    --c-border-active: #09abc3;
+    --c-shadow: rgba(41, 41, 86, 0.06);
+    --c-shadow-active: rgba(9, 171, 195, 0.25);
+    --eye-background: 0;
+    --eye-offset: 3px;
+    --eye-wrapper-y: 0;
+    --eye-y: 0;
+    --eye-x: 0;
+    --eye-s: 1;
+    position: relative;
+}
+
+.password-field:hover {
+    --border: var(--c-border-hover);
+    --eye-duration: 0.05s;
+}
+
+.password-field:focus-within {
+    --border: var(--c-border-active);
+    --shadow: var(--c-shadow-active);
+}
+
+.password-field input,
+.password-field button {
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    background: none;
+    border: none;
+}
+
+.password-field input {
+    display: block;
+    font-family: inherit;
+    font-size: 16px;
+    line-height: 21px;
+    height: 45px;
+    color: var(--c-text);
+    padding: 12px 41px 12px 5px;
+    transform: translateY(var(--y, var(--default-y, 0))) translateZ(0);
+    opacity: var(--o, var(--default-o, 1));
+    pointer-events: var(--pe, var(--default-pe, auto));
+    transition: filter 0.35s, transform 0.4s, opacity 0.25s;
+}
+
+.password-field input::placeholder {
+    color: var(--c-text-light);
+    transition: color 0.25s;
+}
+
+.password-field input::selection {
+    color: var(--c-text-selection);
+    background: var(--c-background-selection);
+}
+
+.password-field button.toggle-password {
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+    padding: 11px;
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    top: 0;
+    transform: scale(var(--s, 1));
+    color: var(--c-text-light);
+    transition: color 0.25s, transform 0.15s;
+    background: transparent;
+    border: none;
+}
+
+.password-field button.toggle-password:hover {
+    color: var(--c-text);
+}
+
+.password-field button.toggle-password:active {
+    --s: 0.95;
+}
+
+.password-field button.toggle-password svg {
+    display: block;
+    width: 23px;
+    height: 23px;
+    pointer-events: none;
+}
+
+.password-field button.toggle-password svg .top,
+.password-field button.toggle-password svg .bottom,
+.password-field button.toggle-password svg .lashes {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5px;
+    stroke-linecap: round;
+}
+
+.password-field button.toggle-password svg .lashes {
+    stroke-dasharray: 3px;
+    stroke-dashoffset: var(--eye-offset);
+}
+
+.password-field button.toggle-password svg .top {
+    fill: var(--c-background);
+    fill-opacity: var(--eye-background);
+}
+
+.password-field button.toggle-password svg .eye {
+    fill: currentColor;
+    transform-origin: 10.5px 13.5px;
+    transform: translate(var(--eye-x), var(--eye-y)) scale(var(--eye-s)) translateZ(0);
+    transition: transform var(--eye-duration, 0.3s);
+}
+
+.password-field.show input {
+    -webkit-text-security: none;
+}
+
+/* Button Styles */
+.btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #8b51ff;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.btn:hover {
+    background-color: #7a3aff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(139, 81, 255, 0.3);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+/* Message Styles */
+.message {
+    display: block;
+    font-size: 14px;
+    margin-top: 10px;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 6px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+/* Vibration animation */
+@keyframes vibrate {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-5px); }
+    40% { transform: translateX(5px); }
+    60% { transform: translateX(-5px); }
+    80% { transform: translateX(5px); }
+    100% { transform: translateX(0); }
+}
+
+.vibrate {
+    animation: vibrate 0.5s linear;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+    form {
+        padding: 30px;
+    }
+    
+    form h1 {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    
+    input, .btn {
+        padding: 12px;
+    }
+}
+
+
+

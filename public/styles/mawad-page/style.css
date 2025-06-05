@@ -1,0 +1,259 @@
+@media (min-width: 768px){
+  .news-input {
+   width: 50%;
+   margin-right: 20px;
+  }
+}
+
+
+.masfofa{
+  font-family: "Pacifico" , sans-serif ;
+}
+
+.navbar-brand span{
+  color:#523DB9;
+}
+
+.btn{
+  padding: 9px 24px;
+  font-weight: 500;
+}
+
+
+.btn-brand {
+    background-color: #7495ED;
+    color: #ffffff;
+    border-color: #7495ED;
+    transition: background-color 0.3s, color 0.3s; 
+}
+.btn-small {
+  font-size: 0.85rem; 
+  padding: 0.375rem 0.75rem;
+}
+
+.btn-brand:hover {
+    background-color: #6581d0;  
+    color: #ffffff; 
+    border-color: #6581d0; 
+}
+.card:hover {
+  transform: translateY(-10px); 
+  box-shadow: 0 4px 8px #6582d0bc; 
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.profile-name {
+ margin-left: 10px;
+ color: azure;
+ font-size: 16px;
+ font-weight: 500;
+}
+
+.dropdown-menu {
+ display: none;
+ position: absolute;
+ top: 100%;
+ right: 0;
+ background-color: #523db9c1;
+ border-radius: 5px;
+ min-width: 180px;
+ box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+ z-index: 1;
+}
+
+.dropdown-menu a {
+ color: white;
+ padding: 12px 16px;
+ text-decoration: none;
+ display: block;
+}
+
+.dropdown-menu a:hover {
+ background-color: #2c3e50;
+}
+
+.profile-link:hover .dropdown-menu,
+.profile-link:focus .dropdown-menu {
+ display: block;
+}
+
+.profile-link p {
+ margin-bottom: 0;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+
+
+
+
+.midell {
+  height: 600px;
+  background-color: #fff5ee;
+  align-items: center;
+  display: flex;
+}
+
+.content {
+  padding: 75px 0 30px 0;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+  overflow-x: hidden;
+
+}
+
+
+
+table {
+  width: 100%;
+  height: 90%;
+}
+
+tr {
+  border-color: #000;
+  text-align: center;
+}
+
+td,
+th {
+  border-color: #000;
+}
+
+.input-field {
+  width: auto;
+  max-width: 200px;
+  min-width: 100px;
+}
+
+.section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+fieldset {
+  margin: -75px 0 -100px 0;
+  width: 60%;
+  height: 930px;
+  padding: 20px;
+  border-radius: 10px;
+  border-color: #1e1e1e;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.pp {
+  margin: 150px;
+}
+
+.text-box {
+  padding: 20px 30px;
+  background: #f9f9f9;
+  border-radius: 6px;
+  position: relative;
+  font-size: 75px;
+  display: block;
+}
+
+.text-box h1,
+.text-box h5,
+.text-box h4,
+.text-box h3 {
+  font-weight: normal;
+  padding: 10px 0 0 0;
+  margin: 10px 0 0 0;
+  font-family: 'Baskerville Old Face', sans-serif;
+}
+
+h4,
+h5 {
+  display: inline;
+}
+
+.size {
+  height: 200px;
+}
+
+@media screen and (max-width: 600px) {
+  .navbar-nav {
+    flex-direction: column;
+  }
+
+  .text-box {
+    font-size: 13px;
+    display: inline-grid;
+  }
+
+  .navbar-nav .nav-item {
+    margin-bottom: 10px;
+  }
+
+  .navbar-collapse {
+    background-color: #343a40;
+    padding: 10px;
+  }
+
+  .midell {
+    height: auto;
+    padding: 20px;
+  }
+
+  fieldset {
+    width: 100%;
+    margin: -75px 0 -50px;
+    padding: 10px;
+  }
+
+  table {
+    width: 100%;
+    overflow-x: auto;
+    display: block;
+  }
+
+  .content {
+    overflow-x: auto;
+    padding: 50px 0 0 0;
+  }
+
+  .pp {
+    margin: 50px 0;
+  }
+
+  h1 {
+    font-size: 28px; 
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  h3 {
+    font-size: 20px; 
+  }
+
+  h5 {
+    font-size: 18px; 
+  }
+
+  .profile-name {
+    font-size: 16px; 
+  }
+
+  .dropdown-menu {
+    min-width: 150px;
+  }
+
+  .dropdown-menu a {
+    padding: 8px 12px;
+  }
+}
+
+

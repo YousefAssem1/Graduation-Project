@@ -1,0 +1,517 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Major Plan SE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+          rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+          crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/major-plan/style.css">
+    
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-1 fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/after_login">
+                <p class="masfofa">Masfofa<span>!</span></p>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navmenu"><span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link d-flex align-items-center profile-link" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src='<%= userData.profileimage %>' alt="Profile" class="rounded-circle" width="40" height="40">
+                            <p class="mb-0 ms-2 profile-name"><%= userData.fname %></p>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="/profile-page">Profile</a>
+                            <a href="/logout">Log out</a>
+                        </div>
+                    </li>  
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="/after_login" class="nav-link">Home</a>
+                    </li>  
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="/student-page" class="nav-link">Student Page</a>
+                    </li>  
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="#Major" class="nav-link">Major Plan</a>
+                    </li>  
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Showcase -->
+  <section class="bg-dark text-light p-5 p-lg-0 p-md-0 pt-lg-5 pt-md-5 mt-0 text-center text-sm-start">
+    <div class="container">
+        <div class="d-sm-flex align-items-center justify-content-between">
+            <div>
+                <h2>Map it, <span style="color: #523DB9;">Master it!</span></h2>
+                <p class="lead my-4 fs-6">Every hour you spend learning today is a step towards 
+                    a brighter and more successful future, so make knowledge your weapon and ambition your
+                    drive!</p>
+            </div>
+            <img class="img-fluid w-25 d-none d-sm-block" src="../img/img/pic2.png" alt="">
+        </div>
+    </div>
+</section>
+    
+    
+    <!-- Software Engineering Study Plan (Fourth Plan) -->
+    <div id="se-plan" class="study-plan">
+        <div class="container-fluid mt-3">
+            <div class="tree-container tree-container d-flex flex-row flex-wrap gap-2 " style="flex-direction: row">
+                <div class="tree-wrapper d-flex justify-contant-center mb-0">
+                <div class="tree">
+                    <ul>
+                        <!-- Programming Branch -->
+                        <li>
+                            <a  data-id="116"><span style="font-weight:800; font-size: 12px;">Programming 1</span></a>
+                            <ul>
+                                <li> <a  data-id="117"><span style="font-weight:800; font-size: 12px;" >Programming 2</span></a>
+                                   
+                                    <ul>
+                                        <li><a  data-id="118"><span style="font-weight:800; font-size: 12px;">Object-Oriented <br> Programming 1</span></a>
+                                            <ul>
+                                                <li><a  data-id="119"><span style="font-weight:800; font-size: 12px;">Internet <br> Programming</span></a>
+                                                <ul>
+                                                    <li><a  data-id="120"><span style="font-weight:800; font-size: 12px;">E-commerce</span></a></li>
+                                                </ul>
+                                            </li>
+                                                <li><a data-id="121"><span style="font-weight:800; font-size: 12px;">Data <br> Structures</span></a>
+                                                    <ul>
+                                                        <li><a  data-id="122"><span style="font-weight:800; font-size: 12px;">Computer<br>  Algorithms</span></a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a  data-id="123"><span style="font-weight:800; font-size: 12px;">Visual <br> Programming 1</span></a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a  data-id="124"><span style="font-weight:800; font-size: 12px;">Computer <br> Operating<br>  Systems</span></a>
+                                            <ul>
+                                                <li><a  data-id="125"><span style="font-weight:800; font-size: 12px;">Introduction<br> to <br> Computer <br> Networks</span></a>
+                                                    <ul>
+                                                        <li><a  data-id="126"><span style="font-weight:800; font-size: 12px;">Information<br>  System<br> s Security</span></a></li>
+                                                        <li><a  data-id="127"><span style="font-weight:800; font-size: 12px;">Expert<br> Systems <br> and Decision <br>Support <br> Systems</span></a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                       
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        <!-- IT Branch -->
+                        <li>
+                            <a  data-id="128"><span style="font-weight:800; font-size: 12px;">Basics of <br> Information <br> Technology</span></a>
+                            <ul>
+                                <li><a  data-id="129"><span style="font-weight:800; font-size: 12px;">Introduction<br> to<br>  Software <br> Engineering</span></a></li>
+                                </li>
+                            </ul>
+                        </li>
+                        
+
+                        <li>
+                            <a data-id="130"><span style="font-weight:800; font-size: 12px;">Principles<br>  of<br>  Accounting 1</span></a>
+                        </li>
+        <!-------------------------------------------------------------------------------->
+        <!-------------------------------------------------------------------------------->
+
+
+                        <li>
+                            <a data-id="131"><span style="font-weight:800; font-size: 12px;">Introduction to <br> Management and <br> Marketing</span></a>
+                            <ul>
+                               <li><a data-id="132"><span style="font-weight:800; font-size: 12px;">Principles<br>  of Financial <br> Management</span></a></li>
+                               <li><a data-id="133"><span style="font-weight:800; font-size: 12px;">Introduction<br>  to Information <br> Systems</span></a>
+                            <ul>
+                                <li><a data-id="134"><span style="font-weight:800; font-size: 12px;">Systems<br>  Analysis</span></a>
+                                <ul>
+                                    <li><a data-id="135"><span style="font-weight:800; font-size: 12px;">Database<br>  Systems</span></a>
+                                    <ul>
+                                        <li><a data-id="136"><span style="font-weight:800; font-size: 12px;">Database<br> Management<br>  Systems <br> (DBMS Management)</span></a></li>
+                                        <li><a data-id="137"><span style="font-weight:800; font-size: 12px;">Information<br>  Retrieval</span></a></li>
+                                    </ul></li>
+                                    <li><a data-id="138" ><span style="font-weight:800; font-size: 12px;">One of the <br> Fourth-Generation <br> Languages <br> (4GL)</span></a></li>
+                                </ul></li>
+                            </ul>
+                            </li>
+                            </ul>
+                        </li>
+                        <!-- Math Branch -->
+                        <li>
+                            <a  data-id="139"><span style="font-weight:800; font-size: 12px;">Calculus 1</span></a>
+                            <ul>
+                                <li><a data-id="140"><span style="font-weight:800; font-size: 12px;">Calculus 2</span></a>
+                                    <ul>
+                                        <li><a data-id="141"><span style="font-weight:800; font-size: 12px;">Linear<br>  Algebra</span></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        <!-- Discrete Math Branch -->
+                        <li>
+                            <a data-id="142"><span style="font-weight:800; font-size: 12px;">Discrete <br> Mathematics</span></a>
+                            <ul>
+                                <li><a  data-id="143"><span style="font-weight:800; font-size: 12px;">Principles of <br> Statistics <br >and <br> Probability</span></a></li>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                     
+                    </ul>
+                </div>
+                  </div> 
+                  
+            </div>
+        </div>
+    </div>
+
+  <!-- Single Dynamic Offcanvas -->
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="dynamicOffcanvas" aria-labelledby="dynamicOffcanvasLabel" style="background-color:#523db9d3; color: aliceblue;">
+        <div class="offcanvas-header ">
+            <h5 class="offcanvas-title" id="dynamicOffcanvasLabel" >Course Title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body" id="offcanvasContent">
+            <!-- Content will be loaded here dynamically -->
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3">
+        <h4 class="mb-2">Made by</h4>
+        <a href="/after_login" class="footer-link">Masfofa Team</a>
+    </footer>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
+    crossorigin="anonymous"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Bootstrap Offcanvas
+            const offcanvas = new bootstrap.Offcanvas(document.getElementById('dynamicOffcanvas'));
+            
+            // Get current user ID from server-side template
+            const userId = '<%= userData.id %>';
+            
+            // Course data with descriptions and content
+            const courseData = {
+                "Programming 1": {
+            description: "Introduction to programming concepts using Python",
+            content: "<p>Covers variables, loops, functions, and basic algorithms.</p>"
+        },
+        "Programming 2": {
+            description: "Advanced programming concepts and data structures",
+            content: "<p>Focuses on algorithms, recursion, and data structures.</p>"
+        },
+        "Object-Oriented Programming": {
+            description: "Introduction to object-oriented programming principles",
+            content: "<p>Learn about classes, objects, inheritance, and polymorphism.</p>"
+        },
+        "Visual Programming 1": {
+            description: "Introduction to visual programming using GUI tools",
+            content: "<p>Learn to create graphical user interfaces and event-driven programming.</p>"
+        },
+        "Data Structures": {
+            description: "Fundamentals of data structures and algorithms",
+            content: "<p>Learn about arrays, linked lists, stacks, queues, and trees.</p>"
+        },
+        "Computer Algorithms": {
+            description: "Introduction to algorithms and their analysis",
+            content: "<p>Focus on sorting, searching, and algorithm complexity.</p>"
+        },
+        "Internet Programming": {
+            description: "Web development using HTML, CSS, and JavaScript",
+            content: "<p>Learn to create interactive web applications.</p>"
+        },
+        "Computer Operating Systems": {
+            description: "Introduction to operating system concepts",
+            content: "<p>Learn about processes, memory management, and file systems.</p>"
+        },
+        "Introduction to Computer Networks": {
+            description: "Basics of computer networking and protocols",
+            content: "<p>Learn about TCP/IP, OSI model, and network security.</p>"
+        },
+        "Logic Circuit Design": {
+            description: "Fundamentals of digital logic design",
+            content: "<p>Learn about logic gates, flip-flops, and combinational circuits.</p>"
+        },
+        "Computer Architecture": {
+            description: "Introduction to computer architecture and organization",
+            content: "<p>Learn about CPU, memory hierarchy, and instruction sets.</p>"
+        },
+        "Basics of Information Technology": {
+            description: "Overview of IT concepts and applications",
+            content: "<p>Learn about hardware, software, and IT management.</p>"
+        },
+        "Introduction to Software Engineering": {
+            description: "Fundamentals of software engineering principles",
+            content: "<p>Learn about software development life cycle and methodologies.</p>"
+        },
+        "Software Project Management and Development": {
+            description: "Project management techniques for software projects",
+            content: "<p>Learn about planning, scheduling, and risk management.</p>"
+        },
+        "Software Specification and Design": {
+            description: "Techniques for software specification and design",
+            content: "<p>Learn about requirements gathering and design patterns.</p>"
+        },
+        "Human-Computer Interaction (HCI)": {
+            description: "Principles of user interface design and usability",
+            content: "<p>Learn about user-centered design and usability testing.</p>"
+        },
+        "Software Testing": {
+            description: "Introduction to software testing techniques",
+            content: "<p>Learn about unit testing, integration testing, and system testing.</p>"
+        },
+        "Software Development and Documentation": {
+            description: "Best practices for software development and documentation",
+            content: "<p>Learn about version control, documentation standards, and code reviews.</p>"
+        },
+        "Calculus 1": {
+            description: "Introduction to calculus concepts",
+            content: "<p>Learn about limits, derivatives, and integrals.</p>"
+        },
+        "Calculus 2": {
+            description: "Advanced calculus concepts",
+            content: "<p>Learn about series, sequences, and multivariable calculus.</p>"
+        },
+        "Linear Algebra": {
+            description: "Fundamentals of linear algebra",
+            content: "<p>Learn about vectors, matrices, and linear transformations.</p>"
+        },
+        "Discrete Mathematics": {
+            description: "Introduction to discrete mathematics concepts",
+            content: "<p>Learn about sets, relations, and graph theory.</p>"
+        },
+        "Principles of Statistics and Probability": {
+            description: "Basics of statistics and probability theory",
+            content: "<p>Learn about descriptive statistics, probability distributions, and hypothesis testing.</p>"
+        },
+        "Introduction to Management and Marketing": {
+            description: "Overview of management and marketing principles",
+            content: "<p>Learn about marketing strategies, consumer behavior, and management theories.</p>"
+        },
+        "Introduction to Information Systems": {
+            description: "Basics of information systems and their applications",
+            content: "<p>Learn about information systems components and their role in organizations.</p>"
+        },
+        "Systems Analysis": {
+            description: "Introduction to systems analysis and design",
+            content: "<p>Learn about system development life cycle and modeling techniques.</p>"
+        },
+        "Database Systems": {
+            description: "Fundamentals of database systems and management",
+            content: "<p>Learn about relational databases, SQL, and database design.</p>"
+        },
+        "Database Management Systems (DBMS)": {
+            description: "Advanced concepts in database management systems",
+            content: "<p>Learn about transaction management, concurrency control, and recovery.</p>"
+        }
+            };
+        
+            // ========================
+            // PROGRESS TRACKING SYSTEM
+            // ========================
+            
+            /**
+             * Save completed courses to storage (localStorage as fallback)
+             */
+            async function saveCompletedCourses() {
+                const completedCourses = Array.from(document.querySelectorAll('.tree li.done'))
+                    .map(item => {
+                        return item.querySelector('a span').textContent.replace(/\n/g, '').trim();
+                    });
+                
+                try {
+                    const response = await fetch('/api/save-progress', {
+                        method: 'POST',
+                        headers: { 
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${getAuthToken()}`
+                        },
+                        body: JSON.stringify({ 
+                            userId, 
+                            completedCourses,
+                            lastUpdated: new Date().toISOString()
+                        })
+                    });
+                    
+                    if (!response.ok) throw new Error('Server save failed');
+                } catch (error) {
+                    console.warn('Using localStorage fallback:', error);
+                    localStorage.setItem(`completedCourses_${userId}`, JSON.stringify({
+                        courses: completedCourses,
+                        timestamp: new Date().toISOString()
+                    }));
+                }
+            }
+            
+            /**
+             * Load completed courses from storage
+             */
+            async function loadCompletedCourses() {
+                try {
+                    const response = await fetch(`/api/load-progress/${userId}`, {
+                        headers: { 'Authorization': `Bearer ${getAuthToken()}` }
+                    });
+                    
+                    let completedCourses = [];
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        completedCourses = data.completedCourses || [];
+                        localStorage.setItem(`completedCourses_${userId}`, JSON.stringify({
+                            courses: completedCourses,
+                            timestamp: new Date().toISOString()
+                        }));
+                    } else throw new Error('Server load failed');
+                    
+                    applyCompletedCourses(completedCourses);
+                } catch (error) {
+                    console.warn('Using localStorage fallback:', error);
+                    const savedData = localStorage.getItem(`completedCourses_${userId}`);
+                    if (savedData) applyCompletedCourses(JSON.parse(savedData).courses || []);
+                }
+            }
+            
+            /**
+             * Apply completed courses to the UI
+             */
+            function applyCompletedCourses(completedCourses) {
+                document.querySelectorAll('.tree a').forEach(link => {
+                    const courseName = link.querySelector('span').textContent.replace(/\n/g, '').trim();
+                    if (completedCourses.includes(courseName)) {
+                        link.classList.add('done');
+                        link.closest('li').classList.add('done');
+                    }
+                });
+            }
+            
+            // =================
+            // EVENT HANDLERS
+            // =================
+            
+            /**
+             * Handle course click - show details in offcanvas with first code's button styling
+             */
+            function handleCourseClick(e) {
+                e.preventDefault();
+                const courseName = this.querySelector('span').textContent.replace(/\n/g, '').trim();
+                
+                const courseKey = Object.keys(courseData).find(key => 
+                    key.toLowerCase() === courseName.toLowerCase()
+                );
+                
+                const course = courseKey ? courseData[courseKey] : {
+                    description: "Course information",
+                    content: `<p>Details about ${courseName} will appear here.</p>`
+                };
+        
+                document.getElementById('dynamicOffcanvasLabel').textContent = courseKey || courseName;
+                document.getElementById('offcanvasContent').innerHTML = `
+                    <p><strong>Description:</strong> ${course.description}</p>
+                    ${course.content}
+                    <div class="mt-3">
+                        <a class="btn btn-sm" style="background-color:#7495ED; color: aliceblue;" href="/video-page?subject=${encodeURIComponent(courseName)}">Videos</a>
+                        <a class="btn btn-sm" style="background-color:#7495ED; color: aliceblue;" href="/Primary-references-page?subject=${encodeURIComponent(courseName)}">Primary references</a>
+                        <a class="btn btn-sm" style="background-color:#7495ED; color: aliceblue;" href="/summary-page?subject=${encodeURIComponent(courseName)}">Summary</a>
+                    </div>
+                    <div class="progress-status mt-2">
+                        <small>${this.classList.contains('done') ? 'Completed' : 'Not completed'}</small>
+                    </div>
+                `;
+                
+                offcanvas.show();
+            }
+            
+            /**
+             * Handle right-click - toggle completion status
+             */
+            function handleRightClick(e) {
+                e.preventDefault();
+                const listItem = this.closest('li');
+                if (listItem) {
+                    listItem.classList.toggle('done');
+                    const link = listItem.querySelector('a');
+                    if (link) link.classList.toggle('done');
+                    
+                    saveCompletedCourses();
+                    
+                    const currentCourse = document.getElementById('dynamicOffcanvasLabel').textContent;
+                    const clickedCourse = this.querySelector('span').textContent.replace(/\n/g, '').trim();
+                    
+                    if (currentCourse.toLowerCase() === clickedCourse.toLowerCase()) {
+                        const statusElement = document.querySelector('.progress-status small');
+                        if (statusElement) {
+                            statusElement.textContent = link.classList.contains('done') ? 'Completed' : 'Not completed';
+                        }
+                    }
+                }
+            }
+            
+            // =================
+            // HELPER FUNCTIONS
+            // =================
+            
+            /**
+             * Get auth token if available
+             */
+            function getAuthToken() {
+                return localStorage.getItem('authToken') || '';
+            }
+            
+            // =================
+            // INITIALIZATION
+            // =================
+            
+            // Set up event listeners
+            function initializeEventListeners() {
+                document.querySelectorAll('.tree a').forEach(link => {
+                    link.addEventListener('click', handleCourseClick);
+                    link.addEventListener('contextmenu', handleRightClick);
+                });
+                
+                document.querySelectorAll('.other-courses-item a').forEach(link => {
+                    link.addEventListener('click', handleCourseClick);
+                    link.addEventListener('contextmenu', handleRightClick);
+                });
+            }
+            
+            // Initialize the page
+            function initializePage() {
+                initializeEventListeners();
+                loadCompletedCourses();
+            }
+            
+            // Start the application
+            initializePage();
+        });
+        </script>
+</body>
+</html>
+
+
+

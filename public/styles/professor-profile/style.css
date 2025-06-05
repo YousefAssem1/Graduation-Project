@@ -1,0 +1,279 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.wrapper,
+.content {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+}
+
+.content {
+    overflow-x: hidden;
+}
+
+.content .section {
+    width: 100%;
+    height: 100vh;
+}
+
+.content .section.hero {
+    background-image: url(https://images.unsplash.com/photo-1589848315097-ba7b903cc1cc?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.image-container {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    perspective: 500px;
+    overflow: hidden;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+table {
+    width: 100%;
+    height: 90%;
+}
+
+.input-field {
+    width: auto;
+    max-width: 200px;
+    min-width: 100px;
+}
+
+.section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+fieldset {
+    width: auto;
+    height: auto;
+    padding: 20px;
+    border-radius: 10px;
+    border-color: #1e1e1e;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+legend {
+    padding: 0 10px;
+}
+
+section {
+    padding: 20px;
+}
+
+.bb {
+    padding: 0 0 0 20px;
+}
+
+h4 {
+    font-weight: normal;
+}
+
+.kk {
+    font-size: 70px;
+}
+
+.section.gradient-blue {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.section.gradient-blue h1 {
+    font-size: 70px;
+    margin: 0;
+    padding: 0;
+}
+
+.section.gradient-blue p {
+    font-size: 30px;
+    margin: 10px 0 0 0;
+    padding: 0;
+    color: #555;
+}
+
+
+
+.masfofa {
+    font-family: "Pacifico", sans-serif;
+}
+
+.navbar-brand span {
+    color: #523DB9;
+}
+
+.btn {
+    padding: 9px 24px;
+    font-weight: 500;
+}
+
+.btn:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 8px #6582d0bc;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-brand {
+    background-color: #7495ED;
+    color: #ffffff;
+    border-color: #7495ED;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-small {
+    font-size: 0.85rem;
+    padding: 0.375rem 0.75rem;
+}
+
+.btn-brand:hover {
+    background-color: #6581d0;
+    color: #ffffff;
+    border-color: #6581d0;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 8px #6582d0bc;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-name {
+    margin-left: 10px;
+    color: azure;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #523db9c1;
+    border-radius: 5px;
+    min-width: 180px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-menu a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-menu a:hover {
+    background-color: #2c3e50;
+}
+
+.profile-link:hover .dropdown-menu,
+.profile-link:focus .dropdown-menu {
+    display: block;
+}
+
+.profile-link p {
+    margin-bottom: 0;
+}
+
+.profile-photo {
+    z-index: 1000;
+}
+
+.share-btn {
+    position: relative;
+    padding: 8px;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 50px;
+    background-color: #eee;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    width: 150px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-share-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+    font-size: 0px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    z-index: 1;
+    transition: all 1s ease .2s;
+}
+
+.share-btn:hover .text-share-btn {
+    left: -100%;
+}
+
+.share-list {
+    display: flex;
+    font-size: 25px;
+    list-style: none;
+    z-index: 1001;
+    padding: 0;
+    margin: 0;
+}
+
+.share-list .share-links a {
+    display: inline-block;
+    color: #000;
+    padding: 0 8px;
+    text-decoration: none;
+    transform: scale(0);
+    transition: transform 0.5s;
+}
+
+.share-btn:hover .share-links a {
+    transform: scale(1);
+}
+
+.share-list .share-links:nth-child(1) a {
+    color: #0088CC;
+    transition-delay: 0.05s;
+}
+
+.share-list .share-links:nth-child(2) a {
+    color: #000;
+    transition-delay: 0.15s;
+}
+
+.share-list .share-links:nth-child(3) a {
+    color: #25D366;
+    transition-delay: 0.2s;
+}

@@ -1,0 +1,271 @@
+/* General Styles */
+@media (min-width: 768px) {
+    .news-input {
+        width: 50%;
+        margin-right: 20px;
+    }
+}
+
+
+
+.masfofa {
+    font-family: "Pacifico", sans-serif;
+}
+
+.navbar-brand span {
+    color: #523DB9;
+}
+
+.btn {
+    padding: 9px 24px;
+    font-weight: 500;
+}
+
+.btn-brand {
+    background-color: #7495ED;
+    color: #ffffff;
+    border-color: #7495ED;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-small {
+    font-size: 0.85rem;
+    padding: 0.375rem 0.75rem;
+}
+
+.btn-brand:hover {
+    background-color: #6581d0;
+    color: #ffffff;
+    border-color: #6581d0;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 8px #6582d0bc;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-name {
+    margin-left: 10px;
+    color: azure;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #523db9c1;
+    border-radius: 5px;
+    min-width: 180px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-menu a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-menu a:hover {
+    background-color: #2c3e50;
+}
+
+.profile-link:hover .dropdown-menu,
+.profile-link:focus .dropdown-menu {
+    display: block;
+}
+
+.profile-link p {
+    margin-bottom: 0;
+}
+
+hr {
+    height: 2px;
+    background-color: #523db9c1;
+    border: 2px;
+    margin: 0px 0;
+}
+
+/* Profile Card Styles */
+.container-4 {
+    padding-top: 80px;
+}
+
+.profile-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    max-width: 350px;
+    margin: 20px auto;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    max-width: 70%;
+    margin-left: 25%;
+    margin-right: 25%;
+    text-align: center;
+}
+
+.profile-header {
+    background-color: #7495ED;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.profile-header h2 {
+    margin: 10px 0;
+}
+
+.profile-img {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-body {
+    padding: 20px;
+}
+
+.profile-body h5 {
+    font-size: 18px;
+    color: #7495ED;
+}
+
+.profile-body ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.profile-body ul li {
+    margin: 5px 0;
+}
+
+/* Share Button Styles */
+.share-btn-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.share-btn {
+    width: 200px;
+    height: 50px;
+    position: relative;
+    padding: 0;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 50px;
+    background-color: #eee;
+    transition: all 0.3s ease;
+    margin: 0 auto;
+}
+
+.text-share-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+    font-size: 16px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #7495ED;
+    z-index: 1;
+    transition: all 0.5s ease;
+}
+
+.share-btn:hover .text-share-btn {
+    left: -100%;
+}
+
+.share-list {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.share-links a {
+    display: inline-block;
+    color: #000;
+    text-decoration: none;
+    transform: scale(0);
+    transition: transform 0.3s;
+    font-size: 20px;
+}
+
+.share-btn:hover .share-links a {
+    transform: scale(1);
+}
+
+/* Social media colors */
+.share-links:nth-child(1) a { color: #25D366; } 
+.share-links:nth-child(2) a { color: #1877F2; } 
+.share-links:nth-child(3) a { 
+    background: linear-gradient(115deg, #f9ce34, #ee2a7b, #6228d7);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+
+
+.or-divider {
+    color: #000;
+    margin: 25px 0;
+    position: relative;
+}
+
+.or-divider:before,
+.or-divider:after {
+    content: "";
+    display: inline-block;
+    width: 35%;
+    height: 1px;
+    background: #ddd;
+    position: absolute;
+    top: 50%;
+}
+
+.or-divider:before {
+    left: 0;
+}
+
+.or-divider:after {
+    right: 0;
+}
+
+
+
+.email{
+    color: #000;
+    text-decoration: none;
+}
+
+.email:hover{
+    color: #7495ED;
+    text-decoration: underline;
+}
+
+
+
