@@ -13,8 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-        <div class="hig">
-
+    <div class="hig">
   <!-- Navbar -->
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-1 fixed-top">
     <div class="container">
@@ -42,6 +41,12 @@
           <li class="nav-item">
             <a href="/after_login" class="nav-link">Home</a>
           </li>  
+          <li class="nav-item">
+            <a href="/professor-page" class="nav-link">Prof page</a>
+          </li> 
+          <li class="nav-item">
+            <a href="#" class="nav-link">Research</a>
+          </li> 
         </ul>
       </div>
     </div>
@@ -69,7 +74,7 @@
               </div>
               <div>
                   <a href="/professor-research-upload" style="text-decoration: none;">
-                    <label for="actual-btn" class="boot">Upload</label>
+                    <label class="boot">Upload</label>
                     </a>
                 </div>
         </div>
@@ -97,12 +102,12 @@
                         <% if (userData.result && userData.result.length > 0) { %>
                             <% userData.result.forEach(function(research) { %>
                                 <% if (research.status === 'year1') { %>
-                                    <div class="col-md-3 col-sm-6 mb-2">
-                                        <div class="card p-2 text-start" style="min-height: 150px;">
-                                            <div class="post-row d-flex justify-content-between align-items-center">
-                                            <div class="user-profile">
-                                            <h6 class="card-title mt-2"><%= research.title %></h6>                                               
-                                            </div> 
+                                    <div class="col-md-3 col-sm-6 mb-2" data-major="all">
+    <div class="card p-2 text-start" style="min-height: 150px;">
+        <div class="post-row d-flex justify-content-between align-items-center">
+            <div class="user-profile">
+                <h6 class="card-title mt-2"><%= research.title %></h6>                                               
+            </div>  
                                             <div class="dropdown">
                 <a href="#" class="text-decoration-none" data-bs-toggle="dropdown" data-bs-display="dynamic" aria-expanded="false">
                     <i class="fa fa-ellipsis-v"></i>
@@ -138,7 +143,7 @@
                         <% if (userData.result && userData.result.length > 0) { %>
                             <% userData.result.forEach(function(research) { %>
                                 <% if (research.status === 'year2') { %>
-                                    <div class="col-md-3 col-sm-6 mb-2">
+                                    <div class="col-md-3 col-sm-6 mb-2" data-major="all">
                                         <div class="card p-2 text-start" style="min-height: 150px;">
                                           <div class="post-row d-flex justify-content-between align-items-center">
                                             <div class="user-profile">
@@ -174,13 +179,13 @@
         </div>
 
     </section>
+    </div>
 
     <!-- Footer -->
     <section style="height: 100px;" class="bg-dark d-flex justify-content-center align-items-center flex-column">
         <h4 style="color: white; margin-bottom: 10px;">Made by</h4>
         <a href="/after_login" style="text-decoration: none; color: #523DB9;">Masfofa Team</a>
     </section>
-    </div>
 <div class="modal fade" id="deleteModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">

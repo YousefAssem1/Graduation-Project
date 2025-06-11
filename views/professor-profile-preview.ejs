@@ -33,13 +33,12 @@
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link d-flex align-items-center profile-link" 
                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src='<%= data.profileimage %>' alt="Profile" class="rounded-circle profile-photo" width="40" height="40">     
+                            <img src='<%= data.profileimage %>' alt="Profile" class="rounded-circle profile-photo"  width="40" height="40">     
                             <p class="mb-0 ms-2 profile-name"><%= data.fname %></p>
                             <i class="fas fa-chevron-down ms-auto"></i> 
                         </a>
                         <div class="dropdown-menu">
                             <a href="/profile-page" class="dropdown-item">Profile</a>
-                            <a href="#" class="dropdown-item">Settings</a>
                             <a href="/logout" class="dropdown-item">Log out</a>
                         </div>
                     </li>  
@@ -63,7 +62,7 @@
             <section class="section hero"></section>
             
             <section class="section gradient-blue">
-                <img src="<%= userData.result.profileimage %>" style="width: 350px; height: 350px; margin: -150px 0 0 0; border-radius: 50%; object-fit: cover;">
+                <img src="<%= userData.result.profileimage %>" style="width: 350px; height: 350px; margin: -120px 0 0 0; border-radius: 50%; object-fit: cover;">
                 <h1 class="kk">
                     <label><%= userData.result.fname %> <%= userData.result.lname %></label>
                 </h1>

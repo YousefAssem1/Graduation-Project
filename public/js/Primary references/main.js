@@ -109,7 +109,7 @@ function createCourseCard(course) {
              style = "max-width: 325px; height: 171px;">
         <a href="/educational-reference?subject=${encodeURIComponent(course.subject)}&type=${encodeURIComponent(course.resource_type)}" 
            class="btn btn-sm mt-2" 
-           style="background-color: #523DB9; color: white; text-decoration: none;">
+           style="background-color: #7495ED; color: white; text-decoration: none;">
             ${course.resource_type === 'primary_reference' ? 'View' : 'Read'}
         </a>
       </div>

@@ -173,7 +173,7 @@ span.login-label {
 }
 
 button.login-btn {
-     margin: 20px 0 ;
+    margin: 20px 0 ;
     width: 100%;
     background: #3d5ff5;
     border-radius: 20px;
@@ -555,7 +555,10 @@ body.active .modal-box {
 .wave-group.error .label-char {
     color: red !important;
 }
-.modal {
+
+
+
+ .modal {
             display: none;
             position: fixed;
             z-index: 1000;

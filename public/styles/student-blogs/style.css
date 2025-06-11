@@ -1031,7 +1031,6 @@ hr {
 
 
 
-
 .ss{
 	width: 200px;
 	height: 30px;
@@ -1332,6 +1331,16 @@ hr {
 }
 
 
+
+
+
 .hig{
 	min-height: 510px;
+}
+
+
+
+.qw{
+  width: 60px;
+  height: 60px;
 }

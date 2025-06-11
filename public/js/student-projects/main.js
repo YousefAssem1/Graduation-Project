@@ -1,259 +1,93 @@
 document.addEventListener('DOMContentLoaded', function() {
-    function filterMaterials(selectedMajor, searchTerm = '') {
-        const materials = document.querySelectorAll('.col-md-3.col-sm-6.mb-2');
-        materials.forEach(material => {
-            const majors = material.getAttribute('data-major').split(' ');
-            const materialTitle = material.querySelector('.card-title').textContent.toLowerCase();
-            const matchesMajor = selectedMajor === 'All' || majors.includes(selectedMajor.toLowerCase().replace(/ /g, '-'));
-            const matchesSearch = materialTitle.includes(searchTerm.toLowerCase());
-
-            if (matchesMajor && matchesSearch) {
-                material.style.display = 'block'; 
-            } else {
-                material.style.display = 'none'; 
-            }
-        });
-    }
-    function setSelectedMajor(major) {
-        const dropdownButton = document.getElementById('majorDropdownButton');
-        if (dropdownButton) {
-            dropdownButton.textContent = major;
-        }
-    }
-    const savedMajor = localStorage.getItem('selectedMajor') || 'All'; 
-    setSelectedMajor(savedMajor);
-    filterMaterials(savedMajor);
-    document.querySelectorAll('.dropdown-item').forEach(item => {
-        item.addEventListener('click', function(event) {
-            const major = event.target.textContent;
-            localStorage.setItem('selectedMajor', major);
-            setSelectedMajor(major);
-            filterMaterials(major); 
-        });
-    });
-    const searchBox = document.querySelector('.box input[name="search"]');
-    if (searchBox) {
-        searchBox.addEventListener('input', function(event) {
-            const searchTerm = event.target.value.trim();
-            const selectedMajor = localStorage.getItem('selectedMajor') || 'All';
-            filterMaterials(selectedMajor, searchTerm); 
-        });
-    }
-});
-
-
-
-
-/*-------------------------------------  last place the user stop  ----------------------------------------*/
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Function to set the active tab
+    // 1. Tab Persistence and Filtering
     function setActiveTab(tabId) {
         const tab = document.querySelector(`#yearTabs a[href="#${tabId}"]`);
         if (tab) {
-            // Remove active class from all tabs
             document.querySelectorAll('#yearTabs .nav-link').forEach(t => t.classList.remove('active'));
-            // Add active class to the selected tab
             tab.classList.add('active');
-            // Show the corresponding tab content
             document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('show', 'active'));
             document.querySelector(`#${tabId}`).classList.add('show', 'active');
         }
     }
 
-    // Function to set the selected major
-    function setSelectedMajor(major) {
-        const dropdownButton = document.getElementById('majorDropdownButton');
-        if (dropdownButton) {
-            dropdownButton.textContent = major;
+    // 2. Search Functionality
+    function initializeSearch() {
+        const searchBox = document.querySelector('.box input[name="search"]');
+        const searchIcon = document.querySelector('.box a');
+        
+        // Create no results container if it doesn't exist
+        if (!document.querySelector('.no-results')) {
+            const noResultsContainer = document.createElement('div');
+            noResultsContainer.className = 'no-results text-center py-5 d-none';
+            noResultsContainer.innerHTML = `
+                <img src="/images/Publications-page/error.png" alt="No results" style="max-width: 200px;">
+                <h5>No projects found matching your search</h5>
+            `;
+            document.querySelector('.tab-content').appendChild(noResultsContainer);
         }
-    }
 
-    // Function to filter materials based on the selected major
-    function filterMaterials(selectedMajor) {
-        const materials = document.querySelectorAll('.col-md-3.col-sm-6.mb-2');
-        materials.forEach(material => {
-            const majors = material.getAttribute('data-major').split(' ');
-            if (selectedMajor === 'All' || majors.includes(selectedMajor.toLowerCase().replace(/ /g, '-'))) {
-                material.style.display = 'block';
-            } else {
-                material.style.display = 'none';
+        function performSearch() {
+            const searchTerm = searchBox.value.trim().toLowerCase();
+            let hasResults = false;
+            const activeTab = document.querySelector('.tab-pane.active');
+            
+            if (activeTab) {
+                const projects = activeTab.querySelectorAll('.col-md-3.col-sm-6.mb-2');
+                
+                projects.forEach(project => {
+                    const title = project.querySelector('.card-title')?.textContent.toLowerCase() || '';
+                    const brief = project.querySelector('.card-text')?.textContent.toLowerCase() || '';
+                    
+                    const matches = title.includes(searchTerm) || brief.includes(searchTerm);
+                    project.style.display = matches ? 'block' : 'none';
+                    if (matches) hasResults = true;
+                });
+                
+                // Show/hide no results message
+                const noResults = document.querySelector('.no-results');
+                if (noResults) {
+                    if (searchTerm && !hasResults) {
+                        noResults.classList.remove('d-none');
+                    } else {
+                        noResults.classList.add('d-none');
+                    }
+                }
             }
+        }
+
+        // Event listeners
+        searchBox.addEventListener('input', performSearch);
+        searchIcon.addEventListener('click', performSearch);
+        
+        // Also trigger search when tabs change
+        document.querySelectorAll('#yearTabs a').forEach(tab => {
+            tab.addEventListener('shown.bs.tab', function() {
+                setTimeout(performSearch, 100);
+            });
         });
+
+        // Initial search
+        performSearch();
     }
 
-    // Retrieve saved tab and major from localStorage
-    const savedTab = localStorage.getItem('selectedTab') || 'year1'; // Default to 'year1' if no tab is saved
-    const savedMajor = localStorage.getItem('selectedMajor') || 'All';
-
-    // Set the active tab and selected major on page load
-    setActiveTab(savedTab);
-    setSelectedMajor(savedMajor);
-    filterMaterials(savedMajor);
-
-    // Add event listeners for tab changes
-    document.querySelectorAll('#yearTabs a').forEach(tab => {
-        tab.addEventListener('shown.bs.tab', function(event) {
-            const tabId = event.target.getAttribute('href').substring(1);
-            localStorage.setItem('selectedTab', tabId);
+    // 3. Initialize everything
+    function initializePage() {
+        // Set active tab from localStorage or default
+        const savedTab = localStorage.getItem('selectedTab') || 'year1';
+        setActiveTab(savedTab);
+        
+        // Tab change event listeners
+        document.querySelectorAll('#yearTabs a').forEach(tab => {
+            tab.addEventListener('shown.bs.tab', function(event) {
+                const tabId = event.target.getAttribute('href').substring(1);
+                localStorage.setItem('selectedTab', tabId);
+            });
         });
-    });
+        
+        // Initialize search
+        initializeSearch();
+    }
 
-    // Add event listeners for major dropdown changes
-    document.querySelectorAll('.dropdown-item').forEach(item => {
-        item.addEventListener('click', function(event) {
-            const major = event.target.textContent;
-            localStorage.setItem('selectedMajor', major);
-            setSelectedMajor(major);
-            filterMaterials(major);
-        });
-    });
+    // Start the application
+    initializePage();
 });
-
-
-
-
-
-
-
-
-
-        // async function fetchProjectsFromDatabase(semester) {
-        //     const mockData = {
-        //         'year1': [
-        //             { id: 1, title: "AI Research", image: "../img/img/pic1.png", semester: "year1" },
-        //             { id: 2, title: "Web Platform", image: "../img/img/pic1.png", semester: "year1" },
-        //             { id: 3, title: "Mobile App", image: "../img/img/pic11.png", semester: "year1" },
-        //             { id: 4, title: "Data Analysis", image: "../img/img/pic2.png", semester: "year1" }
-        //         ],
-        //         'year2': [
-        //             { id: 5, title: "IoT System", image: "../img/img/pic12.png", semester: "year2" },
-        //             { id: 6, title: "Blockchain", image: "../img/img/pic8.png", semester: "year2" }
-        //         ],
-        //         'year3': [] 
-        //     };
-
-        //     await new Promise(resolve => setTimeout(resolve, 200));
-            
-        //     return mockData[semester] || [];
-        // }
-
-        // function createProjectCard(project) {
-        //     return `
-        //         <div class="col-md-3 col-sm-6 mb-2" data-major="computer-science software-engineering management-information-systems data-science-and-artificial-intelligence">
-        //             <div class="card p-2 text-start" style="min-height: 150px;">
-        //                 <h6 class="card-title mt-2">${project.title}</h6>
-        //                 <img src="${project.image}" alt="${project.title}">
-        //                 <a href="#" class="btn btn-sm mt-2" style="background-color: #7495ED; color: white;">Discover</a>
-        //             </div>
-        //         </div>
-        //     `;
-        // }
-
-        // async function populateSemesterProjects(semesterId) {
-        //     const container = document.getElementById(semesterId + 'Projects');
-        //     if (!container) return;
-            
-        //     container.innerHTML = '<div class="col-12 text-center py-4">Loading projects...</div>';
-            
-        //     try {
-        //         const projects = await fetchProjectsFromDatabase(semesterId);
-                
-        //         container.innerHTML = '';
-                
-        //         if (projects.length === 0) {
-        //             container.innerHTML = '<div class="col-12 text-center py-4">No projects available for this semester</div>';
-        //             return;
-        //         }
-                
-        //         for (let i = 0; i < projects.length; i++) {
-        //             const project = projects[i];
-        //             container.innerHTML += createProjectCard(project);
-        //         }
-        //     } catch (error) {
-        //         console.error('Error loading projects:', error);
-        //         container.innerHTML = '<div class="col-12 text-center py-4 text-danger">Error loading projects</div>';
-        //     }
-        // }
-
-        // document.addEventListener('DOMContentLoaded', function() {
-        //     populateSemesterProjects('year1');
-        //     populateSemesterProjects('year2');
-        //     populateSemesterProjects('year3');
-        // });
-
-
-
-
-
-
-
-
-
-
-
-
- async function fetchProjectsFromDatabase(semester) {
-        try {
-            const response = await fetch(`/api/projects?semester=${semester}`);
-            
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            
-            return await response.json();
-        } catch (error) {
-            console.error('Error fetching projects:', error);
-            return []; 
-        }
-    }
-
-    function createProjectCard(project) {
-        return `
-            <div class="col-md-3 col-sm-6 mb-2" data-major="computer-science software-engineering management-information-systems data-science-and-artificial-intelligence">
-                <div class="card p-2 text-start" style="min-height: 150px;">
-                    <h6 class="card-title mt-2">${project.title}</h6>
-                    <img src="${project.image}" alt="${project.title}">
-                    <a href="#" class="btn btn-sm mt-2" style="background-color: #7495ED; color: white;">Discover</a>
-                </div>
-            </div>
-        `;
-    }
-
-    async function populateSemesterProjects(semesterId) {
-        const containerId = semesterId === 'year1' ? 'firstSemesterProjects' : 
-                          semesterId === 'year2' ? 'secondSemesterProjects' : 
-                          'summerSemesterProjects';
-        
-        const container = document.getElementById(containerId);
-        if (!container) return;
-        
-        container.innerHTML = '<div class="col-12 text-center py-4">Loading projects...</div>';
-        
-        try {
-            const projects = await fetchProjectsFromDatabase(semesterId);
-            
-            container.innerHTML = '';
-            
-            if (projects.length === 0) {
-                container.innerHTML = '<div class="col-12 text-center py-4">No projects available for this semester</div>';
-                return;
-            }
-            
-            for (let i = 0; i < projects.length; i++) {
-                const project = projects[i];
-                container.innerHTML += createProjectCard(project);
-            }
-        } catch (error) {
-            console.error('Error loading projects:', error);
-            container.innerHTML = '<div class="col-12 text-center py-4 text-danger">Error loading projects</div>';
-        }
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        populateSemesterProjects('year1'); 
-        populateSemesterProjects('year2'); 
-    });
-
-
-      

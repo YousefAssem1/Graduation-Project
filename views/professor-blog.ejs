@@ -75,7 +75,6 @@
                         </a>
                         <div class="dropdown-menu">
                             <a href="/profile-page">Profile</a>
-                        
                             <a href="/logout">Log out</a>
                         </div>
                     </li>  
@@ -90,6 +89,16 @@
                         <a href="/professor-page" class="nav-link">Prof page</a>
                     </li>  
                 </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="/professor-communicate" class="nav-link">University</a>
+                    </li>  
+                </ul>
+                 <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Communication</a>
+                    </li>  
+                </ul>
             </div>
         </div>
     </nav>
@@ -102,7 +111,7 @@
                     <div class="hh">
                         <div class="write-post-container">
                             <div class="user-profile">
-                              <a href="/profile-page"><img src="<%= userData.profileimage %>" class="imgg"></a>
+                              <a href="/profile-page"><img src="<%= userData.profileimage %>" style="height: 60px; width: 60px;"></a>
                                 <div>
                                     <h5 style="color: #000;"><%= userData.fname %> <%= userData.lname %></h5>
                                 </div>
@@ -176,7 +185,7 @@
                                 <div class="post-container" data-post-id="post-<%= blog.blog_id %>">
                                     <div class="post-row d-flex justify-content-between align-items-start">
                                         <div class="user-profile d-flex">
-                                            <a href="<%= blog.user_profile || '#' %>"><img src="<%= blog.user_image %>" class="imgg"></a>
+                                            <a href="<%= blog.user_profile || '#' %>"><img src="<%= blog.user_image %>" style="width: 60px; height: 60px; margin-bottom: 30px;"></a>
                                             <div>
                                                 <h5><%= blog.user_fname %> <%= blog.user_lname %></h5>
                                                 <p><%= blog.university_code %>, <%= blog.college_name %></p>
@@ -220,7 +229,7 @@
                                 <hr>
                             <% }); %>
                         <% } else { %>
-                            <p>No blog posts found for <%= userData.uniCode %>, <%= userData.collegename %></p>
+                            <p class="text-center">No blog posts found for <%= userData.uniCode %>, <%= userData.collegename %></p>
                         <% } %>
                     </div>
                 </div>
@@ -357,8 +366,27 @@
       </form>
     </div>
   </div>
+</div>
+</div>
+
+
+<!-- Custom Alert Popup -->
+<div class="modal fade" id="customAlertModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h4 class="modal-title">Notification</h4>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <h5>
+      <div class="modal-body text-center" id="customAlertMessage">
+        <!-- Message will be inserted here -->
+      </div>
+      </h5>
+    </div>
   </div>
 </div>
+
         <section style="height: 100px;" class="bg-dark d-flex justify-content-center align-items-center flex-column">
             <h4 style="color: white; margin-bottom: 10px;">Made by</h4>
             <a href="/after_login" style=" text-decoration: none; color: #523DB9;">Masfofa Team</a>
@@ -430,16 +458,22 @@ async function performCommentDelete() {
       toast.show();
     } else {
       commentElement.classList.remove('comment-deleting');
-      alert('Error: ' + (result.message || 'Failed to delete comment'));
+      showAlert('Error: ' + (result.message || 'Failed to delete comment'));
     }
   } catch (error) {
     commentElement.classList.remove('comment-deleting');
     console.error('Error deleting comment:', error);
-    alert('Error deleting comment: ' + error.message);
+    showAlert('Error deleting comment: ' + error.message);
   }
 
   commentToDelete = null;
   bootstrap.Modal.getInstance(document.getElementById('commentDeleteModal')).hide();
+}
+
+function showAlert(message) {
+  const alertModal = new bootstrap.Modal(document.getElementById('customAlertModal'));
+  document.getElementById('customAlertMessage').textContent = message;
+  alertModal.show();
 }
 
 // Make sure this event listener exists
@@ -459,12 +493,12 @@ document.getElementById('confirmCommentDelete').addEventListener('click', perfor
                 const file = fileInput.files[0];
                 
                 if (!title) {
-                    alert('Please enter a title');
+                    showAlert('Please enter a ( title )');
                     return;
                 }
                 
                 if (!content) {
-                    alert('Please enter blog content');
+                    showAlert('Please enter ( blog content )');
                     return;
                 }
                 
@@ -498,11 +532,11 @@ document.getElementById('confirmCommentDelete').addEventListener('click', perfor
                     if (result.success) {
                         window.location.reload();
                     } else {
-                        alert('Error: ' + (result.message || 'Failed to save blog'));
+                        showAlert('Error: ' + (result.message || 'Failed to save blog'));
                     }
                 } catch (error) {
                     console.error('Error:', error);
-                    alert('Error saving blog: ' + error.message);
+                    showAlert('Error saving blog: ' + error.message);
                 }
             });
 
@@ -587,11 +621,11 @@ document.getElementById('confirmCommentDelete').addEventListener('click', perfor
                         // Remove the post from the DOM
                         document.querySelector(`.post-container[data-post-id="post-${postId}"]`).remove();
                     } else {
-                        alert('Error: ' + (result.message || 'Failed to delete post'));
+                        showAlert('Error: ' + (result.message || 'Failed to delete post'));
                     }
                 } catch (error) {
                     console.error('Error deleting post:', error);
-                    alert('Error deleting post: ' + error.message);
+                    showAlert('Error deleting post: ' + error.message);
                 }
             }
 
@@ -660,7 +694,7 @@ document.getElementById('confirmCommentDelete').addEventListener('click', perfor
                             <div class="comment" id="comment-${comment.comment_id}" style="margin-left: ${margin}px">
                                 <div class="user-profile d-flex align-items-center p-2">
                                     <a href="${comment.user_profile}" class="profile-link">
-                                        <img src="${comment.user_image}" class="rounded-circle me-2" width="32">
+                                        <img src="${comment.user_image}" class="rounded-circle me-2" width="32" style="width: 50px; height: 50px; margin: 0 0 -15 px 0;">
                                     </a>
                                     <div style="width: 100%;">
                                         <div class="post-row">
@@ -743,7 +777,7 @@ document.getElementById('confirmCommentDelete').addEventListener('click', perfor
                     });
                 } catch (error) {
                     console.error('Error posting comment:', error);
-                    alert('Error posting comment: ' + error.message);
+                    showAlert('Error posting comment: ' + error.message);
                 }
             }
 
@@ -782,7 +816,7 @@ document.getElementById('confirmCommentDelete').addEventListener('click', perfor
                     await loadComments(currentPostId);
                 } catch (error) {
                     console.error('Error updating comment:', error);
-                    alert('Error updating comment: ' + error.message);
+                    showAlert('Error updating comment: ' + error.message);
                 }
             }
 
@@ -855,12 +889,12 @@ document.getElementById('confirmCommentDelete').addEventListener('click', perfor
                   }, 300);
                 } else {
                   postElement.classList.remove('post-deleting');
-                  alert('Error: ' + (result.message || 'Failed to delete post'));
+                  showAlert('Error: ' + (result.message || 'Failed to delete post'));
                 }
               } catch (error) {
                 postElement.classList.remove('post-deleting');
                 console.error('Error deleting post:', error);
-                alert('Error deleting post: ' + error.message);
+                showAlert('Error deleting post: ' + error.message);
               }
           
               // Cleanup
@@ -917,7 +951,7 @@ async function editPost(postId) {
     new bootstrap.Modal(document.getElementById('editModal')).show();
   } catch (error) {
     console.error('Error loading post:', error);
-    alert('Error loading post: ' + error.message);
+    showAlert('Error loading post: ' + error.message);
   }
 }
 
@@ -954,7 +988,7 @@ document.getElementById('editPostForm').addEventListener('submit', async (e) => 
     window.location.reload();
   } catch (error) {
     console.error('Update error:', error);
-    alert('Error updating post: ' + error.message);
+    showAlert('Error updating post: ' + error.message);
   }
 });
 

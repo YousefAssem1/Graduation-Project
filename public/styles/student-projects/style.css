@@ -55,7 +55,7 @@
    position: absolute;
    top: 100%;
    right: 0;
-  background-color: #523db9c1;
+   background-color: #523db9c1;
    border-radius: 5px;
    min-width: 180px;
    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
@@ -106,7 +106,7 @@
     display: flex;
     cursor: pointer;
     padding: 10px 25px;
-     margin: 50px 0 25px 0;
+    margin: 50px 0 25px 0;
     background-color: #fff;
     border-radius: 30px;
     align-items: center;
@@ -154,3 +154,11 @@
 .vv{
   margin: 0 0 0 110px;
 }
+
+
+.hig{
+   min-height: 579px;
+}
+
+
+
