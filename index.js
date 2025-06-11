@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> upstream/master
 import "express-async-errors"; 
 import express from "express";
 import bodyParser from "body-parser";
@@ -3023,17 +3019,18 @@ passport.use('admin-local', new LocalStrategy(
 
       const admin = adminResult.rows[0];
       
-      // 2. Verify password
-      const valid = await bcrypt.compare(password, admin.admin_password);
-      if (!valid) return cb(null, false, { message: 'Invalid credentials' });
+      // 2. Compare plain text password (NO bcrypt)
+      if (password !== admin.admin_password) {
+        return cb(null, false, { message: 'Invalid credentials' });
+      }
 
       // 3. Create user-like object
       const user = {
         id: admin.admin_id,
         email: admin.admin_email,
         name: admin.admin_name,
-        role: 'admin', // Critical for role checks
-        isAdmin: true  // Optional flag
+        role: 'admin',
+        isAdmin: true
       };
 
       return cb(null, user);
@@ -3042,6 +3039,7 @@ passport.use('admin-local', new LocalStrategy(
     }
   }
 ));
+
 
 // Handle 404 Not Found
 app.use((req, res, next) => {
