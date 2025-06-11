@@ -2877,7 +2877,7 @@ app.post("/verify-email", async (req, res) => {
         const result = await db.query(
           `INSERT INTO users 
           (first_name, last_name, email, password, specialization, major, role, 
-           country, city, description, profileimage, whatsapp, facebook, instagram,
+           country, city, discription, profileimage, whatsapp, facebook, instagram,
            dregee, university_name) 
            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) 
            RETURNING *`,
@@ -2967,7 +2967,7 @@ passport.use(
           const lastName = profile.name?.familyName || "Unknown";
 
           const newUser = await db.query(
-            "INSERT INTO users (email, password, first_name, last_name, role, country, city, description, specialization, major, profileimage, whatsapp, facebook, instagram) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING *",
+            "INSERT INTO users (email, password, first_name, last_name, role, country, city, discription, specialization, major, profileimage, whatsapp, facebook, instagram) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING *",
             [email, "google", firstName, lastName, 'student', 'Jordan', 'Amman',
               "Welcome to my profile!", 'IT', 'Computer Science', '/images/edit-profile/1.jpg',
               'https://www.whatsapp.com/users/', 'https://www.facebook.com/users/', 'https://www.instagram.com/users/']
@@ -3015,17 +3015,18 @@ passport.use('admin-local', new LocalStrategy(
 
       const admin = adminResult.rows[0];
       
-      // 2. Verify password
-      const valid = await bcrypt.compare(password, admin.admin_password);
-      if (!valid) return cb(null, false, { message: 'Invalid credentials' });
+      // 2. Compare plain text password (NO bcrypt)
+      if (password !== admin.admin_password) {
+        return cb(null, false, { message: 'Invalid credentials' });
+      }
 
       // 3. Create user-like object
       const user = {
         id: admin.admin_id,
         email: admin.admin_email,
         name: admin.admin_name,
-        role: 'admin', // Critical for role checks
-        isAdmin: true  // Optional flag
+        role: 'admin',
+        isAdmin: true
       };
 
       return cb(null, user);

@@ -74,7 +74,7 @@
               </div>
               <div>
                   <a href="/professor-research-upload" style="text-decoration: none;">
-                    <label for="actual-btn" class="boot">Upload</label>
+                    <label class="boot">Upload</label>
                     </a>
                 </div>
         </div>
@@ -102,12 +102,12 @@
                         <% if (userData.result && userData.result.length > 0) { %>
                             <% userData.result.forEach(function(research) { %>
                                 <% if (research.status === 'year1') { %>
-                                    <div class="col-md-3 col-sm-6 mb-2">
-                                        <div class="card p-2 text-start" style="min-height: 150px;">
-                                            <div class="post-row d-flex justify-content-between align-items-center">
-                                            <div class="user-profile">
-                                            <h6 class="card-title mt-2"><%= research.title %></h6>                                               
-                                            </div> 
+                                    <div class="col-md-3 col-sm-6 mb-2" data-major="all">
+    <div class="card p-2 text-start" style="min-height: 150px;">
+        <div class="post-row d-flex justify-content-between align-items-center">
+            <div class="user-profile">
+                <h6 class="card-title mt-2"><%= research.title %></h6>                                               
+            </div>  
                                             <div class="dropdown">
                 <a href="#" class="text-decoration-none" data-bs-toggle="dropdown" data-bs-display="dynamic" aria-expanded="false">
                     <i class="fa fa-ellipsis-v"></i>
@@ -143,7 +143,7 @@
                         <% if (userData.result && userData.result.length > 0) { %>
                             <% userData.result.forEach(function(research) { %>
                                 <% if (research.status === 'year2') { %>
-                                    <div class="col-md-3 col-sm-6 mb-2">
+                                    <div class="col-md-3 col-sm-6 mb-2" data-major="all">
                                         <div class="card p-2 text-start" style="min-height: 150px;">
                                           <div class="post-row d-flex justify-content-between align-items-center">
                                             <div class="user-profile">

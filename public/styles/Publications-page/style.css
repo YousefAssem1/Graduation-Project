@@ -434,3 +434,48 @@ hr {
 .hig{
     min-height: 579px;
 }
+
+.professors-grid {
+    transition: opacity 0.3s ease;
+}
+.no-results {
+    transition: all 0.3s ease;
+}
+
+
+
+.no-faculty-members {
+    display: none; /* Hidden by default, shown only when needed */
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.no-faculty-members h3 {
+    color: #6c757d;
+    margin-bottom: 1rem;
+}
+
+
+
+
+.no-results, .no-faculty-members {
+            background-color: #fff;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .no-results img, .no-faculty-members img {
+            max-width: 150px;
+            margin-bottom: 15px;
+        }
+        .no-results h4, .no-faculty-members h3 {
+            color: #000;
+            margin-bottom: 0.5rem;
+        }
+        .no-results p, .no-faculty-members p {
+            color: #000;
+        }
+        .professors-grid {
+            transition: opacity 0.3s ease;
+        }

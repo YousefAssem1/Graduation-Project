@@ -186,7 +186,7 @@
                             <p class="mb-0 ms-2 profile-name"><%= userData.fname %></p>
                         </a>
                         <div class="dropdown-menu">
-                            <a href="/logout_admin">Log out</a>
+                            <a href="/logout">Log out</a>
                         </div>
                     </li>  
                 </ul>
@@ -241,7 +241,7 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingFacultyInfo">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFacultyInfo">
-                                Faculty Information
+                                Univ/coll Information
                             </button>
                         </h2>
                         <div id="collapseFacultyInfo" class="accordion-collapse collapse" data-bs-parent="#facultyAccordion">
@@ -323,7 +323,7 @@
                     <div class="accordion-item">
     <h2 class="accordion-header" id="headingFacultyImage">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFacultyImage">
-            Upload Faculty Photo
+            Upload Univ/coll Photo
         </button>
     </h2>
     <div id="collapseFacultyImage" class="accordion-collapse collapse" data-bs-parent="#facultyAccordion">
@@ -369,7 +369,7 @@
 <!--------------------------------------------- slide 2 -------------------------------------------------->
 
 <div class="swiper-slide">
-   <div class="about-us">
+   <div class="about-us" style="margin: 10px 0 0 0;">
                         <div class="upload-container">
                             <div class="card p-4 shadow-lg">
                                 <h2 class="text-center mb-4">Add member</h2>
@@ -420,7 +420,7 @@
                                                             <span class="label-char" style="--index: 7">m</span>
                                                             <span class="label-char" style="--index: 8">a</span>
                                                             <span class="label-char" style="--index: 9">i</span>
-                                                            <span class="label-char" style="--index: 9">l</span>
+                                                            <span class="label-char" style="--index: 10">l</span>
                                                         </label>
                                                     </div>
                                                 </div>
@@ -463,11 +463,11 @@
                                                             <span class="label-char" style="--index: 3">e</span>
                                                             <span class="label-char" style="--index: 4">r</span>
                                                             <span class="label-char" style="--index: 5">&nbsp;</span>
-                                                            <span class="label-char" style="--index: 0">M</span>
-                                                            <span class="label-char" style="--index: 1">a</span>
-                                                            <span class="label-char" style="--index: 2">j</span>
-                                                            <span class="label-char" style="--index: 3">o</span>
-                                                            <span class="label-char" style="--index: 4">r</span>
+                                                            <span class="label-char" style="--index: 6">M</span>
+                                                            <span class="label-char" style="--index: 7">a</span>
+                                                            <span class="label-char" style="--index: 8">j</span>
+                                                            <span class="label-char" style="--index: 9">o</span>
+                                                            <span class="label-char" style="--index: 10">r</span>
                                                         </label>
                                                     </div>
                                                 </div>
@@ -495,11 +495,11 @@
                                                             <span class="label-char" style="--index: 9">i</span>
                                                             <span class="label-char" style="--index: 10">v</span>
                                                             <span class="label-char" style="--index: 11">e</span>
-                                                            <span class="label-char" style="--index: 11">r</span>
-                                                            <span class="label-char" style="--index: 11">s</span>
-                                                            <span class="label-char" style="--index: 11">i</span>
-                                                            <span class="label-char" style="--index: 11">t</span>
-                                                            <span class="label-char" style="--index: 11">y</span>
+                                                            <span class="label-char" style="--index: 12">r</span>
+                                                            <span class="label-char" style="--index: 13">s</span>
+                                                            <span class="label-char" style="--index: 14">i</span>
+                                                            <span class="label-char" style="--index: 15">t</span>
+                                                            <span class="label-char" style="--index: 16">y</span>
                                                         </label>
                                                     </div>
                                                 </div>
@@ -525,7 +525,7 @@
                                                             <span class="label-char" style="--index: 9">l</span>
                                                             <span class="label-char" style="--index: 10">l</span>
                                                             <span class="label-char" style="--index: 11">e</span>
-                                                            <span class="label-char" style="--index: 11">g</span>
+                                                            <span class="label-char" style="--index: 12">g</span>
                                                         </label>
                                                     </div>
                                                 </div>
@@ -591,7 +591,7 @@
       
 <!-------------------------------------------------- slide 3 ------------------------------------------------>
 <div class="swiper-slide">
-    <div class="about-us" style="margin: 40px 0 0 0;">
+    <div class="about-us" >
         <div class="upload-container">
             <div class="card p-4 shadow-lg">
                 <h2 class="text-center mb-4">Edit Faculty Member</h2>
@@ -1052,7 +1052,9 @@ document.getElementById('submitFacultyBtn').addEventListener('click', async (e) 
     e.preventDefault();
     
     const formData = new FormData(document.getElementById('facultyForm'));
-    
+     const universityCode = formData.get('universityCode');
+    formData.set('universityCode', universityCode.toUpperCase());
+
     try {
         const response = await fetch('/institutions', {
             method: 'POST',

@@ -31,7 +31,6 @@
                         </a>
                         <div class="dropdown-menu">
                             <a href="/profile-page">Profile</a>
-                            <a href="#">settings</a>
                             <a href="/logout">Log out</a>
                         </div>
                     </li>  
@@ -85,7 +84,8 @@
     </div>
 
     <section class="professors-section py-5">
-        <div class="container ll">
+    <div class="container ll">
+        <% if (userData.professor && userData.professor.length > 0) { %>
             <div class="professors-grid">
                 <% userData.professor.forEach(professor => { %>
                     <a href="/publication-profile?email=<%= professor.professor_email %>&uni_code=<%= userData.uniCode %>&col_name=<%= userData.collegename %>" class="professor-card-link">
@@ -105,8 +105,14 @@
                     </a>
                 <% }); %>
             </div>
-        </div>
-    </section>
+        <% } else { %>
+            <div class="no-faculty-members text-center py-5">
+                <h3>No faculty members</h3>
+                <p class="text-muted">There are currently no faculty members to display</p>
+            </div>
+        <% } %>
+    </div>
+</section>
     </div>
 
     <section style="align-items: bottom; height: 100px;" class="bg-dark d-flex justify-content-center align-items-center flex-column">

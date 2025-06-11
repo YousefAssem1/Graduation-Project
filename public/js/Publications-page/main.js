@@ -1,67 +1,41 @@
 document.addEventListener('DOMContentLoaded', function() {
     // DOM elements
-    const filterButtons = document.querySelectorAll('.filter-button');
     const professorsGrid = document.querySelector('.professors-grid');
     const searchBox = document.querySelector('.box input[name="search"]');
     const searchIcon = document.querySelector('.box a');
-    const professorCards = document.querySelectorAll('.professor-card');
+    const professorCards = professorsGrid ? Array.from(professorsGrid.querySelectorAll('.professor-card')) : [];
+    const noFacultyDiv = document.querySelector('.no-faculty-members');
     
-    // Create no results element
-    const noResultsDiv = document.createElement('div');
-    noResultsDiv.className = 'no-results text-center w-100 py-5';
-    noResultsDiv.innerHTML = `
-        <img src="/images/Publications-page/error.png" alt="No results" style="max-width: 200px;">
-        <h4 class="mt-3 text-muted">No professors found matching your search</h4>
-    `;
-    noResultsDiv.style.display = 'none';
-    professorsGrid.parentNode.insertBefore(noResultsDiv, professorsGrid.nextSibling);
+    // Function to create the no-results element
+    function createNoResultsElement() {
+        const noResultsDiv = document.createElement('div');
+        noResultsDiv.className = 'no-results text-center w-100 py-5';
+        noResultsDiv.style.display = 'none';
+        noResultsDiv.style.transition = 'opacity 0.3s ease';
+        noResultsDiv.style.opacity = '0';
+        noResultsDiv.innerHTML = `
+            <img src="/images/Publications-page/error.png" alt="No results" style="max-width: 200px;">
+            <h4 class="mt-3 text-muted">No faculty members found</h4>
+            <p class="text-muted">Try different keywords or check your spelling</p>
+        `;
+        professorsGrid.parentNode.insertBefore(noResultsDiv, professorsGrid.nextSibling);
+        return noResultsDiv;
+    }
 
-    // Map filter button values to database values
-    const filterMap = {
-        'all': 'all',
-        'computer-science': ['Computer Science', 'Computer Information Systems'],
-        'AI': 'Data Science and Artificial Intelligence',
-        'Softwer': 'Software Engineering'
-    };
-
-    // Set initial active filter
-    document.querySelector('[data-filter="all"]').classList.add('active');
-
-    // Enhanced filter function with no results handling
-    function filterProfessors() {
-        const activeFilter = document.querySelector('.filter-button.active').dataset.filter;
+    // Function to perform search with smooth transitions
+    function performSearch(noResultsDiv) {
         const searchTerm = searchBox.value.toLowerCase().trim();
         let visibleCount = 0;
 
-        // First hide all cards
         professorCards.forEach(card => {
-            card.style.display = 'none';
-        });
-
-        // Then show matching cards
-        professorCards.forEach(card => {
-            const cardCategory = card.dataset.category;
             const cardText = card.textContent.toLowerCase();
+            const matchesSearch = searchTerm === '' || cardText.includes(searchTerm);
             
-            // Determine if category matches
-            let categoryMatch = false;
-            if (activeFilter === 'all') {
-                categoryMatch = true;
-            } else {
-                const filterValues = filterMap[activeFilter];
-                if (Array.isArray(filterValues)) {
-                    categoryMatch = filterValues.some(value => cardCategory.includes(value));
-                } else {
-                    categoryMatch = cardCategory.includes(filterValues);
-                }
-            }
-            
-            // Check search term
-            const searchMatch = searchTerm === '' || cardText.includes(searchTerm);
-            
-            if (categoryMatch && searchMatch) {
+            if (matchesSearch) {
                 card.style.display = 'block';
                 visibleCount++;
+            } else {
+                card.style.display = 'none';
             }
         });
 
@@ -87,34 +61,41 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Filter button event listeners
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-            filterProfessors();
+    // Initialize based on whether there are professors or not
+    if (professorCards.length > 0) {
+        // There are professors - set up search functionality
+        const noResultsDiv = createNoResultsElement();
+
+        // Event listeners with debouncing for better performance
+        let searchTimeout;
+        searchBox.addEventListener('input', function() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => performSearch(noResultsDiv), 100);
         });
-    });
+        
+        searchIcon.addEventListener('click', function(e) {
+            e.preventDefault();
+            performSearch(noResultsDiv);
+        });
+        
+        searchBox.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch(noResultsDiv);
+            }
+        });
 
-    // Search event listeners
-    const handleSearch = () => {
-        // Reset to 'all' filter when searching
-        if (searchBox.value.trim() !== '') {
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            document.querySelector('[data-filter="all"]').classList.add('active');
-        }
-        filterProfessors();
-    };
+        // Initialize search
+        performSearch(noResultsDiv);
+    } else if (noFacultyDiv) {
+        // No professors initially - show the "No faculty members" message
+        noFacultyDiv.style.display = 'block';
+        
+        // Disable search functionality since there's nothing to search
+        searchBox.disabled = true;
+        searchBox.placeholder = 'No faculty members to search';
+        searchIcon.style.pointerEvents = 'none';
+        searchIcon.style.opacity = '0.5';
+    }
 
-    searchBox.addEventListener('input', handleSearch);
-    searchIcon.addEventListener('click', (e) => {
-        e.preventDefault();
-        handleSearch();
-    });
-    searchBox.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') handleSearch();
-    });
-
-    // Initialize filtering
-    filterProfessors();
+    // Additional styling for no results/faculty states
 });
