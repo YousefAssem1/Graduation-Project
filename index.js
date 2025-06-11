@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/master
 import "express-async-errors"; 
 import express from "express";
 import bodyParser from "body-parser";
@@ -999,7 +1002,12 @@ const message = `
     <hr style="margin: 30px 0;">
     <p style="font-size: 14px; color: #555;">
       After completing your registration, you can log in anytime by visiting:<br>
-      <a href="${loginLink}" style="color: #3498db;">${loginLink}</a>
+      <a href="${loginLink}" style="color: #3498db;">${loginLink}</a> <br>
+      or simply click ctrl + shift + A in the home page<br>
+      to access the admin Login Page.
+    </p>
+    <p style="font-size: 14px; color: #999; margin-top: 20px;">
+      If you received this email by mistake or don't know why you got it, you can safely ignore it.
     </p>
   </div>
 `;
@@ -2591,7 +2599,7 @@ app.post("/login_student", (req, res, next) => {
     if (err) return next(err);
     if (!user) {
       
-      return res.redirect("/login?error=Invalid+credentials");
+      return res.redirect("/login?message=Invalid+credentials");
     }
 
     try {
@@ -2603,7 +2611,7 @@ app.post("/login_student", (req, res, next) => {
       );
 
       if (existing.length > 0) {
-        return res.redirect("/login?error=Already+logged+in+elsewhere");
+        return res.redirect("/login?message=Already+logged+in+elsewhere");
       }
 
       req.logIn(user, async (err) => {
@@ -2622,7 +2630,7 @@ app.post("/login_student", (req, res, next) => {
         } else {
           req.logout((e) => {
             if (e) console.error(e);
-            return res.redirect("/login?error=Unauthorized+access");
+            return res.redirect("/login?message=Unauthorized+access");
           });
         }
       });
@@ -2638,7 +2646,7 @@ app.post("/login_prof", (req, res, next) => {
   passport.authenticate("local", async (err, user, info) => {
     if (err) return next(err);
     if (!user) {
-      return res.redirect("/login?error=Invalid+credentials");
+      return res.redirect("/login?message=Invalid+credentials");
     }
 
     try {
@@ -2650,7 +2658,7 @@ app.post("/login_prof", (req, res, next) => {
       );
 
       if (existing.length > 0) {
-        return res.redirect("/login?error=Already+logged+in+elsewhere");
+        return res.redirect("/login?message=Already+logged+in+elsewhere");
       }
 
       // 2. ما في جلسة سابقة ⇒ نسمح بالدخول
@@ -2670,7 +2678,7 @@ app.post("/login_prof", (req, res, next) => {
         } else {
           req.logout((e) => {
             if (e) console.error(e);
-            return res.redirect("/login?error=Unauthorized+access+for+professors");
+            return res.redirect("/login?message=Unauthorized+access+for+professors");
           });
         }
       });
@@ -2732,7 +2740,7 @@ app.get(
 //google callback route
 app.get(
   "/auth/google/student-page",
-  passport.authenticate("google", { failureRedirect: "/login?error=already_logged_in" }),
+  passport.authenticate("google", { failureRedirect: "/login?message=already_logged_in" }),
  
   (req, res) => {
     if (req.user.role === 'student') {
@@ -2743,7 +2751,7 @@ app.get(
           console.error("Error during logout:", err);
           return res.status(500).send("Internal Server Error");
         }
-        res.redirect("/login?error=Unauthorized+access+for+students");
+        res.redirect("/login?message=Unauthorized+access+for+students");
       });
     }
   }
@@ -2760,7 +2768,7 @@ const { first_name, last_name, email, password, role, major, degree, university,
       // Email exists - redirect to login with error message
       return res.status(400).json({ 
         error: "Email already exists. Please log in.",
-        redirect: "/login?error=Email+already+exists.+Please+log+in."
+        redirect: "/login?message=Email+already+exists.+Please+log+in."
       });
     }
 
@@ -3015,18 +3023,17 @@ passport.use('admin-local', new LocalStrategy(
 
       const admin = adminResult.rows[0];
       
-      // 2. Compare plain text password (NO bcrypt)
-      if (password !== admin.admin_password) {
-        return cb(null, false, { message: 'Invalid credentials' });
-      }
+      // 2. Verify password
+      const valid = await bcrypt.compare(password, admin.admin_password);
+      if (!valid) return cb(null, false, { message: 'Invalid credentials' });
 
       // 3. Create user-like object
       const user = {
         id: admin.admin_id,
         email: admin.admin_email,
         name: admin.admin_name,
-        role: 'admin',
-        isAdmin: true
+        role: 'admin', // Critical for role checks
+        isAdmin: true  // Optional flag
       };
 
       return cb(null, user);
